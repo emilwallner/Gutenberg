@@ -6,7 +6,7 @@
 #    By: ewallner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/07 22:41:03 by ewallner          #+#    #+#              #
-#    Updated: 2016/12/07 23:07:39 by ewallner         ###   ########.fr        #
+#    Updated: 2016/12/08 09:44:20 by ewallner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,5 +25,14 @@
 	Look up unicode on intra 
 	Look up stdarg
 	Use the filechecker
+	
+	1. Turn args into an array or linked list
+	2. Check what type each is
+	3. Store each type
+	4. Parse each type, amount and content.
+	5. Create an array of executable functions
+	6. Pre execute the variables in functions
+	7. Final output
+	8. Error handling for each 
 */
 

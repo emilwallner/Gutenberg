@@ -6,15 +6,24 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 20:13:07 by ewallner          #+#    #+#             */
-/*   Updated: 2016/11/16 08:43:19 by ewallner         ###   ########.fr       */
+/*   Updated: 2016/12/13 17:52:01 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# define BUFF_SIZE 10
 
+int		ft_strstrlen(char **str);
+int		get_next_line(const int fd, char **line);
 void	ft_putchar_fd(char c, int fd);
+int		ft_count_words(char const *s, char c);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putendl(char const *s);
