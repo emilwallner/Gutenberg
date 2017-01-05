@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 20:13:07 by ewallner          #+#    #+#             */
-/*   Updated: 2016/12/13 17:52:01 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/05 16:11:09 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # define BUFF_SIZE 10
+# define BASE16 "0123456789ABCDEF"
+# define BASE2	"01"
 
+void	ft_base(unsigned int i, unsigned int base_length, char *base);
 int		ft_strstrlen(char **str);
 int		get_next_line(const int fd, char **line);
 void	ft_putchar_fd(char c, int fd);

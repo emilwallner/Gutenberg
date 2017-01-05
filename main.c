@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/04 22:54:03 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/05 16:11:56 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int ft_printf(char *str, ...)
 int main(void)
 {
 	ft_printf("This is a string: %s \nThis is a number: %d \n", "It's workin", 42);
+	ft_base(1000, 16, BASE16);
 	return 0;
 }
