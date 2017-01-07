@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_functionpointers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 12:35:07 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/07 14:29:12 by ewallner         ###   ########.fr       */
+/*   Created: 2017/01/07 16:15:02 by ewallner          #+#    #+#             */
+/*   Updated: 2017/01/07 16:22:01 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-void	ft_putstr(char	const *s)
+
+void fun1()
 {
-	if (!s)
-		ft_putstr("(Null)");
-	else
-		write(1, s, ft_strlen(s));
+
 }
+
+void fun2()
+{
+
+}
+
+void fun3()
+{
+
+}
+
+void (*func_ptr[3]) = {fun1, fun2, fun3};

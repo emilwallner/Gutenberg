@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:36:20 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/05 17:33:09 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/06 10:33:42 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int			main(void)
 	printf("\033[0m1. This is s: %s<<<\n", "This is a string");
 	printf("This is int with flags: %.5d<<<\n", 123456789);
 	printf("This is a pointer address: %p<<<\n", p);
+	printf("This is a pointer address:%    -  d<<<\n", -42);
 	return (0);
 }

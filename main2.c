@@ -2,6 +2,10 @@
 
 int main(void)
 {
-	printf("hello %*i sd", 80, 20);
+	//char *types;
+
+	//types = "123456789";
+	
+	printf("hello %  Q ei ntars");
 	return (0);
 }

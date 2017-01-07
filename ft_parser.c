@@ -6,12 +6,13 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/06 00:18:05 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/06 15:23:02 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_print.h"
+#include <stdio.h>
 
 void	ft_printspace(int i, int zero)
 {
@@ -36,20 +37,6 @@ void	ft_puttype(char *str, int len)
 	}
 }
 
-void	ft_printorder(t_vars *e)
-{
-	if (e->printorder == TRUE)
-	{
-		ft_puttype(e->print, e->len);
-		ft_printspace(e->space, e->zero);
-	}
-	else
-	{
-		ft_printspace(e->space, e->zero);
-		ft_puttype(e->print, e->len);
-	}
-}
-
 int		ft_calcwidth(int *i, char *str)
 {
 	size_t		len;
@@ -65,24 +52,31 @@ int		ft_calcwidth(int *i, char *str)
 	temp = ft_strnew(len);
 	ft_strncpy(temp, str + *i - len, len);
 	value = ft_atoi(temp);
-	//ft_strdel(&temp);
+	ft_strdel(&temp);
 	return (value);
 }
 
 int		ft_flagconv(int *i, char *str)
 {
+	int		value;
+
 	if (str[*i] == 'h' && str[*i + 1] == 'h')
-		return (1);
+		value = 1;
 	else if (str[*i] == 'h')
-		return (2);
+		value = 2;
 	else if (str[*i] == 'l' && str[*i] != 'l')
-		return (3);
+		value = 3;
 	else if (str[*i] == 'l')
-		return (4);
+		value = 4;
 	else if (str[*i] == 'j')
-		return (5);
+		value = 5;
 	else
-		return (6);
+		value = 6;
+	if(value == 1 || value == 3)
+		*i = *i + 2;
+	else
+		*i = *i + 1;
+	return (value);
 }
 
 int		ft_increse(int *i, int val)
@@ -91,38 +85,103 @@ int		ft_increse(int *i, int val)
 	return (val + 1);
 }
 
+void	ft_removespace(char *str, int *i, t_vars *e)
+{
+	while (str[*i] == ' ')
+		*i = *i + 1;
+	e->space = TRUE;
+}
+
+void	ft_initialize_e(t_vars *e, int *i)
+{
+	*i = *i + 1;
+	e->minus = 0;
+	e->zero = 0;
+	e->plus = 0;
+	e->width = 0;
+	e->pointlen = 0;
+	e->percent = 0;
+	e->space = 0;
+	e->hash = 0;
+	e->flags = 0;
+	e->len = 0;
+	e->type = 0;
+}
+
+int		ft_findtype(char *str, int *i)
+{
+	int		k;
+	char	*types;
+
+	k = 0;
+	types = "sSpdDioOuUxXcC";
+	while (types[k] != '\0')
+	{
+		if (types[k] == str[*i])
+			return (k + 1);
+		k++;
+	}
+	return (0);
+}
+
+void	ft_printvars(t_vars *e)
+{
+	printf("e->minus: %d\n", e->minus);
+	printf("e->zero: %d\n", e->zero);
+	printf("e->plus: %d\n", e->plus);
+	printf("e->width: %d\n", e->width);
+	printf("e->pointlen: %d\n", e->pointlen);
+	printf("e->percent: %d\n", e->percent);
+	printf("e->space: %d\n", e->space);
+	printf("e->hash: %d\n", e->hash);
+	printf("e->flags: %d\n", e->flags);
+	printf("e->len: %d\n", e->len);
+	printf("e->type: %d\n", e->type);
+	printf("New var>>>\n\n\n");
+}
+
+void	ft_printtype(char *str, int *i)
+{
+	t_vars e;
+	
+	ft_initialize_e(&e, i);
+	if	(str[*i] == ' ')
+		ft_removespace(str, i, &e);
+	if (str[*i] == '-') 
+		e.minus = ft_increse(i, e.minus);
+	if (str[*i] == '+')
+		e.plus = ft_increse(i, e.plus);
+	if	(str[*i] == ' ')
+		ft_removespace(str, i, &e);
+	if (str[*i] == '0' && str[*i - 1] == '%')
+		e.zero = ft_increse(i, e.zero);
+	if (ft_isdigit(str[*i]) == TRUE)
+		e.width = ft_calcwidth(i, str);
+	if (str[*i] == '.')
+	{
+		*i = *i + 1;
+		e.pointlen = ft_calcwidth(i, str);
+	}
+	if (str[*i] == '#')
+		e.hash = ft_increse(i, e.hash);
+	if (str[*i] == 'h' || str[*i] == 'j' || str[*i] == 'z' || str[*i] == 'l')
+		e.flags = ft_flagconv(i, str);
+	e.type = ft_findtype(str, i);
+	ft_printvars(&e);
+}
+
 void	ft_parser(char *str)
 {
 	int i;
-	int end;
-	t_vars e;
 
 	i = -1;
-	end = TRUE;
-	while (str[++i] != '\0' && end == FALSE)
+	while (str[++i] != '\0')
 	{
 		if(str[i] != '%')
-			ft_putchar(str[i++]);
+			ft_putchar(str[i]);
 		else if(str[i] == '%' && str[i + 1] == '%')
-			ft_putchar(str[i++]);
+			ft_putchar(str[i]);
 		else
-		{
-			if(str[++i] == '-') 
-				e.minut = ft_increse(&i, e.minus);
-			if (str[i] == '+') 
-				e.plus = ft_increse(&i, e.plus);
-			if(str[i] == '0' && str[i - 1] == '%')
-				e.zero = ft_increse(&i, e.zero)
-					if(ft_isalpha(str[i++]) == TRUE)
-						e.width = ft_calcwidth(&i, str);
-			if(str[i] == '.')
-			{
-				i++;
-				e.pointlen = ft_calcwidth(&i, str);
-			}
-			if(str[i] == 'h' || str[i] == 'j' || str[i] == 'z' || str[i] == 'l')
-				e.flags = ft_flagconv(&i, str);
-			ft_printorder(str[i], &e);
-		}
+			ft_printtype(str, &i);
 	}
 }
