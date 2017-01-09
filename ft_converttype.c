@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/07 20:02:53 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/09 16:40:42 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include <stdarg.h>
 #include "./libft/libft.h"
 
-char		*converttype(t_vars *e, void (*p)(va_list ap))
+char		*converttype(t_vars *e)
 {
 	char *str;
 	t_types t;
 
-	(e->f == 18) ? str = (*p[1])(va_arg(ap, char*)) : e->type;
+	(e->f == 18) ? str = (va_arg(ap, char*)) : e->type;
 	(e->type == d && e->flags == ll) ? str = (*p[4])(va_arg(ap, int)) : e->type;
+	
 	return (str);
 }
 
@@ -40,12 +41,11 @@ void		*typeformat(t_vars *e)
 	(ft_strchr("uoxX", e->type) && e->flags == 4) ? e->f = 12 : e->f;
 	(ft_strchr("uoxX", e->type) && e->flags == 5) ? e->f = 13 : e->f;
 	(ft_strchr("uoxX", e->type) && e->flags == 6) ? e->f = 14 : e->f;
-	(ft_strchr("fFeEgGaA", e->type) && e->flags == 0) ? e->f = 15 : e->f;
-	(e->type == 'c' && e->flags == 0) ? e->f = 16 : e->f;
-	((e->type == 'c' && e->flags == 4) || e->type == 'C') ? e->f = 17 : e->f;
-	(e->type == 's' && e->flags == 0) ? e->f = 18 : e->f;
-	((e->type == 's' && e->flags == 4) || e->type == 'S') ? e->f = 19 : e->f;
-	(e->type == 'p' && e->flags == 0) ? e->f = 20 : e->f;
+	(e->type == 'c' && e->flags == 0) ? e->f = 15 : e->f;
+	((e->type == 'c' && e->flags == 4) || e->type == 'C') ? e->f = 16 : e->f;
+	(e->type == 's' && e->flags == 0) ? e->f = 17 : e->f;
+	((e->type == 's' && e->flags == 4) || e->type == 'S') ? e->f = 18 : e->f;
+	(e->type == 'p' && e->flags == 0) ? e->f = 19 : e->f;
 }
 
 
