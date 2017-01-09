@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/08 16:54:14 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/09 15:15:00 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_vars {
 }				t_vars;
 
 
-
+void	ft_printwchar(wchar_t c);
 void	ft_parser(char *str);
 
 #endif
