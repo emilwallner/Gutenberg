@@ -6,14 +6,22 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/09 15:15:12 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/11 23:01:49 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "./libft/libft.h"
 
+void	snprint(char *s)
+{
+	if (!s)
+		ft_putstr("(Null)");
+	else
+		write(1, s, ft_strlen(s));
+}
 
 void	ft_printwchar_norm(wchar_t c, unsigned short *mask, unsigned char bit)
 {

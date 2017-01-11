@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:36:20 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/06 10:33:42 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/11 18:38:23 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int			main(void)
 	printf("6. This is a string: %s, and a number %d\n\n", ops, nbr);
 
 	printf("\033[1;35m.Max and -Min\n\n");
-	printf("\033[0m1. This is max 5 for 10 chars: %.5s<<<\n", "1234567890");
-	printf("2. This is min 10 for 5 chars: %-10s<<<\n", "12345");
-	printf("3. This is min 10 and max 5 for 10 chars: %-10.5s<<<\n", "1234567890");
-	printf("4. This is min 10 and max 5 for 5 chars: %-10.5s<<<\n", "12345");
+	printf("\033[0m1. This is max 5 for 10 string: %.5s<<<\n", "1234567890");
+	printf("2. This is 10 width for 5 chars: %-10s<<<\n", "12345");
+	printf("3. This is 10 width and 5 pr for 2! chars: %10.5d<<<\n", -12);
+	printf("4. This is min 5 width and 10 pre for 10 chars: %-5.10s<<<\n", "1234567890");
 	printf("5. This is 5 and max 10 for 5 chars: %5.10s<<<\n", "12345");
 	printf("6. This is 5 and max 10 for 5 chars: %5.10s<<<\n", "12345");
 	printf("7. This is 10 and max 5 for 10 chars: %10.5s<<<\n", "1234567890");
-	printf("8. This is 5 and max 10 for 10 chars: %5.10s<<<\n\n", "1234567890");
+	printf("8. This is 5 and max 10 for 10 chars: %.0s<<<\n\n", "1234567890");
 
 	printf("\033[1;35m.The different types:\n\n");
 	printf("\033[0m1. This is s: %s<<<\n", "This is a string");

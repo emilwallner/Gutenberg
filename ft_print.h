@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/09 15:15:00 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/11 23:34:06 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 # define TRUE 1
 # define FALSE 0
 
+/*
+ * b = base;
+ */
+
+
 typedef struct	s_vars {
 	int		minus;
 	int		zero;
@@ -22,17 +27,24 @@ typedef struct	s_vars {
 	int		width;
 	int		pointlen;
 	int		percent;
+	int		f;
 	int		space;
 	int		hash;
 	int		flags;
 	int		len;
 	int		type;
-	int		f;
+	int		base;
+	int		printminus;
+	int		printplus;
+	int		printspace;
+	int		printprespace;
+	int		printlastspace;
+	int		printzero;
+	int		printprefix;
 	char	*print;
 }				t_vars;
 
 
-void	ft_printwchar(wchar_t c);
 void	ft_parser(char *str);
 
 #endif
