@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 15:22:15 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 21:16:40 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	ft_printspace(int i, char c)
 
 void	ft_printprefix(int i)
 {
-	if (i == 6 || i == 7)
+	if (i == UOCTAL || i == OCTAL)
 		ft_putchar('0');
-	if (i == 10)
+	if (i == HEX || i == POINTER)
 		ft_putstr("0x");
 	else
 		ft_putstr("0X");
@@ -81,12 +81,12 @@ void	nb_pre_flags(t_vars *e)
 {
 	if (e->printspace == TRUE)
 		ft_putchar(' ');
-	if (e->base == 10 && e->plus == 1 && e->neg != 0)
+	if (e->base == 10 && e->plus && e->neg == FALSE)
 	{
 		e->printplus = 1;
 		e->printlen = e->printlen + 1;
 	}
-	if (e->base == 10 && e->neg == 1)
+	if (e->base == 10 && e->neg == TRUE)
 	{
 		e->printminus = 1;
 		e->printlen = e->printlen + 1;
@@ -103,8 +103,9 @@ void	nb_pre_flags(t_vars *e)
 		ft_putchar('-');
 	if ((e->printlen > e->width) && (e->printplus == TRUE))
 		ft_putchar('+');
+	e->printchar = (e->zero) ? '0' : ' ';
 	if (e->align == FALSE && e->width > e->printlen)
-		ft_printspace((e->width - e->printlen), ' ');
+		ft_printspace((e->width - e->printlen), e->printchar);
 	if (e->printprefix == TRUE)
 		ft_printprefix(e->type);
 	if ((e->width > e->printlen) && e->align == FALSE)
@@ -119,7 +120,8 @@ void	nb_pre_flags(t_vars *e)
 
 void	nb_post_flags(t_vars *e)
 {
-	if (
+	if (e->width > e->printlen)
+		ft_printspace((e->width - e->printlen), ' ');
 }
 
 char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
@@ -166,20 +168,20 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 	return (dest);
 }
 
-char	*n(intmax_t nb, t_vars *e)
+void	n(intmax_t nb, t_vars *e)
 {
 	char *str;
+	if(e->type == PERCENT)
+
 	ft_size_of_intmax(nb, e);
 	nb_pre_flags(e);
 	ft_atoi_intmax(nb, e);
-	return (str);
 }
 
-char	*u(uintmax_t nb, t_vars *e)
+void u(uintmax_t nb, t_vars *e)
 {
 	char *str;
 	ft_size_of_uintmax(nb, e);
 	nb_pre_flags(e);
 	ft_atoi_uintmax(nb, e);
-	return (str);
 }

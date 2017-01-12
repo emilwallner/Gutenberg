@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 16:58:39 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 20:44:08 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,22 @@
 #include "./libft/libft.h"
 
 
-void		sn(char *str, t_vars *e);
-void		sc(char	 c, t_vars *e);
-void		su(wchar_t c, t_vars *e);
-void		sw(wchar_t *str, t_vars *e);
-
-void		*u(intmax_t nb, t_vars *e);
-char		*n(uintmax_t nb, t_vars *e);
-
 void		ftprint(va_list ap, t_vars *e)
 {
-	(e->f == 1) ? sn(n((intmax_t)(va_arg(ap, int)), e), e) : 0;
-	(e->f == 2) ? sn(n((intmax_t)(va_arg(ap, int)), e), e) : 0;
-	(e->f == 3) ? sn(n((intmax_t)(va_arg(ap, int)), e), e) : 0;
-	(e->f == 4) ? sn(n((intmax_t)(va_arg(ap, long int)), e), e) : 0;
-	(e->f == 5) ? sn(n((intmax_t)(va_arg(ap, long long int)), e), e) : 0;
-	(e->f == 6) ? sn(n((va_arg(ap, intmax_t)), e), e) : 0;
-	(e->f == 7) ? sn(n((intmax_t)(va_arg(ap, size_t)), e), e) : 0;
-	(e->f == 8) ? sn(u((intmax_t)(va_arg(ap, unsigned int)), e), e) : 0;
-	(e->f == 9) ? sn(u((intmax_t)(va_arg(ap, unsigned int)), e), e) : 0;
-	(e->f == 10) ? sn(u((intmax_t)(va_arg(ap, unsigned int)), e), e) : 0;
-	(e->f == 11) ? sn(u((intmax_t)(va_arg(ap, unsigned long int)), e), e) : 0;
-	(e->f == 12) ? sn(u((intmax_t)(va_arg(ap, unsigned long long int)), e), e) : 0;
-	(e->f == 13) ? sn(u((va_arg(ap, intmax_t)), e), e) : 0;
-	(e->f == 14) ? sn(n((intmax_t)(va_arg(ap, double)), e), e) : 0;
+	(e->f == 1) ? n((intmax_t)(va_arg(ap, int)), e) : 0;
+	(e->f == 2) ? n((intmax_t)(va_arg(ap, int)), e) : 0;
+	(e->f == 3) ? n((intmax_t)(va_arg(ap, int)), e) : 0;
+	(e->f == 4) ? n((intmax_t)(va_arg(ap, long int)), e) : 0;
+	(e->f == 5) ? n((intmax_t)(va_arg(ap, long long int)), e) : 0;
+	(e->f == 6) ? n((va_arg(ap, intmax_t)), e) : 0;
+	(e->f == 7) ? n((intmax_t)(va_arg(ap, size_t)), e) : 0;
+	(e->f == 8) ? u((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 9) ? u((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 10) ? u((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 11) ? u((intmax_t)(va_arg(ap, unsigned long int)), e) : 0;
+	(e->f == 12) ? u((intmax_t)(va_arg(ap, unsigned long long int)), e) : 0;
+	(e->f == 13) ? u((va_arg(ap, intmax_t)), e) : 0;
+	(e->f == 14) ? n((intmax_t)(va_arg(ap, double)), e) : 0;
 	(e->f == 15) ? sc((char)(va_arg(ap, int)), e) : 0;
 	(e->f == 16) ? su((wchar_t)(va_arg(ap, wint_t)), e) : 0;
 	(e->f == 17) ? sn((va_arg(ap, char*)), e) : 0;

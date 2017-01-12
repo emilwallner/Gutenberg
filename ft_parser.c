@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 16:39:51 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 17:38:42 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,13 @@ void	ft_removespace(char *str, int *i, t_vars *e)
 	e->printspace = TRUE;
 }
 
+void	ft_removeplus(char *str, int *i, t_vars *e)
+{
+	while (str[*i] == '+')
+		*i = *i + 1;
+	e->plus = TRUE;
+}
+
 void	ft_initialize_e(t_vars *e, int *i)
 {
 	*i = *i + 1;
@@ -157,7 +164,7 @@ void	ft_printtype(char *str, int *i)
 	if (str[*i] == '-') 
 		e.align = ft_increse(i, e.align);
 	if (str[*i] == '+')
-		e.plus = ft_increse(i, e.plus);
+		ft_removeplus(str, i, &e);
 	if	(str[*i] == ' ')
 		ft_removespace(str, i, &e);
 	if (str[*i] == '0' && str[*i - 1] == '%')
