@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 10:01:52 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 16:50:37 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,24 @@
  * b = base;
  */
 
+# define INTEGER 0
+# define DECIMAL 1
+# define UDECIMAL 2
+# define STRING 3
+# define WSTRING 4
+# define CHAR 5
+# define WCHAR 6
+# define PERCENT 7
+# define POINTER 8
+# define UUNSIGNED 9
+# define UOCTAL 10
+# define UHEX 11
+# define HEX 12
+# define OCTAL 13
+# define UNSIGNED 14
 
 typedef struct	s_vars {
-	int		minus;
+	int		align;
 	int		zero;
 	int		plus;
 	int		width;

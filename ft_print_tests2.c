@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:36:20 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 09:54:09 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 15:44:06 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_print.h"
@@ -21,13 +21,27 @@ int			main(void)
 	char	*ops = "It's working.";
 	int		nbr = 42;
 	char	*p = NULL;
-	printf("This is a Hed normal>>>% 5.20d|\n", 123456789);
+	long int i = 2343223645324;
+	printf("This is a Hed normal>>>%20p|\n\n\n", &nbr);
+	printf("This is no number:%d\n", 0);
+	printf("This is no number: >>>% 10d<<<\n", 0);
+	printf("This is a test: >>>%U<<<\n", 4294967296);
+	
+/*
 	printf("This is a Hex minus>>>%+.5d\n", (unsigned int)123456789);
 	printf("This is a Hex minus>>>%+.5hhd\n", (unsigned char)123456789);
 	printf("This is a Hex minus>>>%+.5hd\n", (unsigned short)123456789);
 	printf("This is a Hex minus>>>%+.5ld\n", (unsigned long)123456789);
 	printf("This is a Hex minus>>>%+.5lld\n", (unsigned long long)123456789);
 	printf("This is a Hex minus>>>%+.5zd\n\n\n", (size_t)123456789);
+	
+	printf("This is a Hex minus>>>%+9d\n", 123456789);
+	printf("This is a Hex minus>>>%+10d\n\n\n", 123456789);
+	printf("This is a Hex minus>>>%+11d\n\n\n", 123456789);
+	
+	printf("This is a Hex minus>>>%9d\n", -123456789);
+	printf("This is a Hex minus>>>%+10d\n\n\n", -123456789);
+	printf("This is a Hex minus>>>%+11d\n\n\n", -123456789);
 	
 	printf("This is a Hex minus>>>%-d\n", -123456789);
 	printf("This is a Hex minus>>>%d\n", -123456789);
@@ -97,7 +111,7 @@ int			main(void)
 	printf ("| return:%S | \n", L"تمكنبس");
 	printf ("| return:%ls | \n", L"تمكنبسâ");
 	
-	
+	*/
 	
 	
 	

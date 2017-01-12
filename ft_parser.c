@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 09:43:55 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 16:39:51 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ void	ft_removespace(char *str, int *i, t_vars *e)
 {
 	while (str[*i] == ' ')
 		*i = *i + 1;
-	e->space = TRUE;
+	e->printspace = TRUE;
 }
 
 void	ft_initialize_e(t_vars *e, int *i)
 {
 	*i = *i + 1;
-	e->minus = 0;
+	e->align = 0;
 	e->zero = 0;
 	e->plus = 0;
 	e->width = -1;
@@ -121,7 +121,7 @@ int		ft_findtype(char *str, int *i)
 	char	*types;
 
 	k = 0;
-	types = "sSpdDioOuUxXcC";
+	types = "idDsScC%pUOXxou";
 	while (types[k] != '\0')
 	{
 		if (types[k] == str[*i])
@@ -133,7 +133,7 @@ int		ft_findtype(char *str, int *i)
 
 void	ft_printvars(t_vars *e)
 {
-	printf("e->minus: %d\n", e->minus);
+	printf("e->minus: %d\n", e->align);
 	printf("e->zero: %d\n", e->zero);
 	printf("e->plus: %d\n", e->plus);
 	printf("e->width: %d\n", e->width);
@@ -155,7 +155,7 @@ void	ft_printtype(char *str, int *i)
 	if	(str[*i] == ' ')
 		ft_removespace(str, i, &e);
 	if (str[*i] == '-') 
-		e.minus = ft_increse(i, e.minus);
+		e.align = ft_increse(i, e.align);
 	if (str[*i] == '+')
 		e.plus = ft_increse(i, e.plus);
 	if	(str[*i] == ' ')
