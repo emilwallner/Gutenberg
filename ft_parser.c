@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/11 23:16:32 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 09:43:55 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,21 @@ void	ft_initialize_e(t_vars *e, int *i)
 	e->minus = 0;
 	e->zero = 0;
 	e->plus = 0;
-	e->width = 0;
-	e->pointlen = 0;
+	e->width = -1;
+	e->pointlen = -1;
 	e->percent = 0;
-	e->space = 0;
-	e->hash = 0;
 	e->flags = 0;
 	e->len = 0;
+	e->neg = 0;
 	e->type = 0;
+	e->base = 10;
+	e->printminus = 0;
+	e->printplus = 0;
+	e->printspace = 0;
+	e->printprespace = 0;
+	e->printlastspace = 0;
+	e->printzero = 0;
+	e->printprefix = 0;
 }
 
 int		ft_findtype(char *str, int *i)
@@ -132,8 +139,8 @@ void	ft_printvars(t_vars *e)
 	printf("e->width: %d\n", e->width);
 	printf("e->pointlen: %d\n", e->pointlen);
 	printf("e->percent: %d\n", e->percent);
-	printf("e->space: %d\n", e->space);
-	printf("e->hash: %d\n", e->hash);
+	printf("e->space: %d\n", e->printspace);
+	printf("e->hash: %d\n", e->printprefix);
 	printf("e->flags: %d\n", e->flags);
 	printf("e->len: %d\n", e->len);
 	printf("e->type: %d\n", e->type);
@@ -163,7 +170,7 @@ void	ft_printtype(char *str, int *i)
 		e.pointlen = ft_calcwidth(i, str);
 	}
 	if (str[*i] == '#')
-		e.hash = ft_increse(i, e.hash);
+		e.printprefix = ft_increse(i, e.printprefix);
 	if (str[*i] == 'h' || str[*i] == 'j' || str[*i] == 'z' || str[*i] == 'l')
 		e.flags = ft_flagconv(i, str);
 	e.type = ft_findtype(str, i);

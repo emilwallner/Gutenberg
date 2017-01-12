@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/11 23:34:06 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 10:01:52 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ typedef struct	s_vars {
 	int		width;
 	int		pointlen;
 	int		percent;
+	int		neg;
 	int		f;
-	int		space;
-	int		hash;
 	int		flags;
 	int		len;
 	int		type;
 	int		base;
 	int		printminus;
+	int		printlen;
 	int		printplus;
 	int		printspace;
 	int		printprespace;

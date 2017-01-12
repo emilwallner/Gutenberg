@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/11 23:54:06 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 10:11:45 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void		ft_size_of_intmax(intmax_t nb, t_vars *e)
 	else 
 		e->base = 10;
 	i = 0;
+	if ((nb < 0) && (e->type == 'i' || e->type == 'd'))
+		e->neg = 1;
 	while (nb)
 	{
 		nb /= e->base;
@@ -70,14 +72,24 @@ void	nbflags(t_vars *e)
 	int		maxlen;
 
 	maxlen = (e->width > e->pointlen) ? e->width : e->pointlen;
-	if (e->space == TRUE)
+	if (e->printspace == TRUE)
 		ft_putchar(' ');
-	if (e->base == 10 && e->plus == 1)
-		ft_putchar('+');
-	if (e->base == 10 && e->minus == 1)
+	if (e->base == 10 && e->plus == 1 && e->neg != 0)
+		e->printplus = 1;
+	if (e->base == 10 && e->neg == 1)
+		e->printminus = 1;
+	if (e->type == 'o' && e->printprefix == 1)
+		e->printlen = e->printlen + 1;
+	else if ((e->type == 'x' || e->type == 'X') && e->printprefix == 2)
+		e->printlen = e->printlen + 2;
+	else
+		e->printlen = e->len;
+	if (e->pointlen > e->printlen)
+		e->printlen = e->pointlen;
+	if ((e->printlen > e->width) && (e->minus == TRUE))
 		ft_putchar('-');
-	if (e->len > maxlen)
-		printzero(maxlen - e->len);
+
+		
 }
 
 char	*n(intmax_t nb, t_vars *e)

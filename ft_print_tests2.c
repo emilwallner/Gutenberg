@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:36:20 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/11 23:52:15 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/12 09:54:09 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_print.h"
@@ -32,9 +32,9 @@ int			main(void)
 	printf("This is a Hex minus>>>%-d\n", -123456789);
 	printf("This is a Hex minus>>>%d\n", -123456789);
 	printf("This is a Hex minus>>>%20d|\n", -123456789);
-	printf("This is a Hex minus>>>%+20d|\n", 123456789);
-	printf("This is a Hex minus>>>%+20.19d|\n", 123456789);
-	printf("This is a Hex minus>>>%-20d|\n", -123456789);
+	printf("This is a Hex minus>>>%+20d|\n", 11111);
+	printf("This is a Hex minus>>>%+20.20d|\n", -222222);
+	printf("This is a Hex minus>>>%+20.10d|\n", -33333);
 	printf("This is a Hex minus>>>%.20d|\n", -123456789);
 	printf("This is a Hex minus>>>%.5d\n", (unsigned int)-123456789);
 	printf("This is a Hex minus>>>%.5hhd\n", (unsigned char)-123456789);
@@ -60,8 +60,8 @@ int			main(void)
 	printf("This is a Hex minus>>>%5.9lx\n\n\n", (unsigned long)-123456789);
 	
 	
-	printf("This is a Hex minus>>>%#5.9x\n", -123456789);
-	printf("This is a Hex plus>>>%#5.9hx\n", (unsigned short)-123456789);
+	printf("This is a Hex minus>>>%#11.9x\n", -123456789);
+	printf("This is a Hex plus>>>%#12.9hx\n", (unsigned short)-123456789);
 	printf("This is a Hex plus>>>%#5.9hhx\n", (unsigned char)-123456789);
 	printf("This is a Hex minus>>>%#-5.9lx\n", (unsigned long)-123456789);
 	printf("This is a Hex minus>>>%#-5.9hhx\n", (unsigned char)-123456789);
