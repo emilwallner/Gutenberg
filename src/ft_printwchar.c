@@ -6,14 +6,14 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/11 23:01:49 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:36:26 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 
 void	snprint(char *s)
 {
@@ -38,7 +38,7 @@ void	ft_printwchar_norm(wchar_t c, unsigned short *mask, unsigned char bit)
 void	ft_printwchar(wchar_t c)
 {
 	static unsigned short mask[] = {128, 192, 224, 240, 63, 7, 15};
-	unsigned char	bit;
+	unsigned char	bit = '\0';
 
 	if (c < 128)
 	{

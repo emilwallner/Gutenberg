@@ -6,24 +6,13 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 17:38:42 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:37:12 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 #include "ft_print.h"
 #include <stdio.h>
-
-void	ft_printspace(int i, int zero)
-{
-	while (i-- > 0)
-	{
-		if(zero == TRUE)
-			ft_putchar('0');
-		else
-			ft_putchar(' ');
-	}
-}
 
 void	ft_puttype(char *str, int len)
 {

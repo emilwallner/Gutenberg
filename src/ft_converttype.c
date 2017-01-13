@@ -6,14 +6,14 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 20:44:08 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:34:28 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_print.h>
 #include <stdarg.h>
 #include <wchar.h>
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 
 
 void		ftprint(va_list ap, t_vars *e)
@@ -32,10 +32,10 @@ void		ftprint(va_list ap, t_vars *e)
 	(e->f == 12) ? u((intmax_t)(va_arg(ap, unsigned long long int)), e) : 0;
 	(e->f == 13) ? u((va_arg(ap, intmax_t)), e) : 0;
 	(e->f == 14) ? n((intmax_t)(va_arg(ap, double)), e) : 0;
-	(e->f == 15) ? sc((char)(va_arg(ap, int)), e) : 0;
-	(e->f == 16) ? su((wchar_t)(va_arg(ap, wint_t)), e) : 0;
-	(e->f == 17) ? sn((va_arg(ap, char*)), e) : 0;
-	(e->f == 18) ? sw((va_arg(ap, wchar_t*)), e) : 0;
+	//(e->f == 15) ? sc((char)(va_arg(ap, int)), e) : 0;
+	//(e->f == 16) ? su((wchar_t)(va_arg(ap, wint_t)), e) : 0;
+	//(e->f == 17) ? sn((va_arg(ap, char*)), e) : 0;
+	//(e->f == 18) ? sw((va_arg(ap, wchar_t*)), e) : 0;
 	(e->f == 19) ? n((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
 	(e->f == 20) ? n((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
 }

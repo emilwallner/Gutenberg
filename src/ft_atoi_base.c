@@ -6,11 +6,11 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 21:16:40 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:30:17 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 #include "ft_print.h"
 
@@ -128,7 +128,6 @@ char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
 {
 	char	*sixteen;
 	int			i;
-	int			len;
 	char		*dest;
 
 	i = 0;
@@ -150,7 +149,6 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 {
 	char	*sixteen;
 	int			i;
-	int			len;
 	char		*dest;
 
 	i = 0;
@@ -170,7 +168,6 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 
 void	n(intmax_t nb, t_vars *e)
 {
-	char *str;
 	if(e->type == PERCENT)
 
 	ft_size_of_intmax(nb, e);
@@ -180,7 +177,6 @@ void	n(intmax_t nb, t_vars *e)
 
 void u(uintmax_t nb, t_vars *e)
 {
-	char *str;
 	ft_size_of_uintmax(nb, e);
 	nb_pre_flags(e);
 	ft_atoi_uintmax(nb, e);

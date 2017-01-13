@@ -6,13 +6,13 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/06 18:33:28 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 11:32:27 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
-#include "./libft/libft.h"
+#include "../libft/libft.h"
 #include "ft_print.h"
 
 int ft_printf(char *str, ...)
@@ -45,9 +45,5 @@ int ft_printf(char *str, ...)
 
 int main(void)
 {
-	//ft_printf("This is a string: %-1238970.54zs9458s \nThis is a number: % -0#hhd \n", "It's workin", 43452345342);
-	wchar_t t;
-	t = ሴ;
-	write(1, &t, 1);
 	return 0;
 }
