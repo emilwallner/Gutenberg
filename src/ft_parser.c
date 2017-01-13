@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 11:37:12 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 12:30:05 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,15 @@ void	ft_initialize_e(t_vars *e, int *i)
 	e->width = -1;
 	e->pointlen = -1;
 	e->percent = 0;
+	e->neg = 0;
+	e->f = -1;
 	e->flags = 0;
 	e->len = 0;
-	e->neg = 0;
 	e->type = 0;
 	e->base = 10;
+	e->printchar = 'E';
 	e->printminus = 0;
+	e->printlen = 0;
 	e->printplus = 0;
 	e->printspace = 0;
 	e->printprespace = 0;
@@ -121,7 +124,7 @@ int		ft_findtype(char *str, int *i)
 	while (types[k] != '\0')
 	{
 		if (types[k] == str[*i])
-			return (k + 1);
+			return (k);
 		k++;
 	}
 	return (0);
@@ -129,21 +132,32 @@ int		ft_findtype(char *str, int *i)
 
 void	ft_printvars(t_vars *e)
 {
-	printf("e->minus: %d\n", e->align);
+	printf("e->align: %d\n", e->align);
 	printf("e->zero: %d\n", e->zero);
 	printf("e->plus: %d\n", e->plus);
 	printf("e->width: %d\n", e->width);
 	printf("e->pointlen: %d\n", e->pointlen);
 	printf("e->percent: %d\n", e->percent);
-	printf("e->space: %d\n", e->printspace);
-	printf("e->hash: %d\n", e->printprefix);
+	printf("e->neg: %d\n", e->neg);
+	printf("e->f: %d\n", e->f);
 	printf("e->flags: %d\n", e->flags);
 	printf("e->len: %d\n", e->len);
 	printf("e->type: %d\n", e->type);
+	printf("e->base: %d\n", e->base);
+	printf("e->printchar: %d\n", e->printchar);
+	printf("e->printminus: %d\n", e->printminus);
+	printf("e->printlen: %d\n", e->printlen);
+	printf("e->printplus: %d\n", e->printplus);
+	printf("e->printspace: %d\n", e->printspace);
+	printf("e->printprespace: %d\n", e->printprespace);
+	printf("e->printlastspace: %d\n", e->printlastspace);
+	printf("e->printzero: %d\n", e->printzero);
+	printf("e->printprefix: %d\n", e->printprefix);
+	
 	printf("New var>>>\n\n\n");
 }
 
-void	ft_printtype(char *str, int *i)
+t_vars		ft_printtype(char *str, int *i)
 {
 	t_vars e;
 	
@@ -170,21 +184,21 @@ void	ft_printtype(char *str, int *i)
 	if (str[*i] == 'h' || str[*i] == 'j' || str[*i] == 'z' || str[*i] == 'l')
 		e.flags = ft_flagconv(i, str);
 	e.type = ft_findtype(str, i);
-	ft_printvars(&e);
+	return (e);
 }
 
-void	ft_parser(char *str)
+t_vars		ft_parser(char *str)
 {
 	int i;
+	t_vars e;
 
 	i = -1;
 	while (str[++i] != '\0')
 	{
 		if(str[i] != '%')
 			ft_putchar(str[i]);
-		else if(str[i] == '%' && str[i + 1] == '%')
-			ft_putchar(str[i]);
 		else
-			ft_printtype(str, &i);
+			e = ft_printtype(str, &i);
 	}
+	return (e);
 }

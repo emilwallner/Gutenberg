@@ -6,10 +6,11 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 11:33:23 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 12:18:42 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/libft.h"
+#include <stdarg.h>
 
 #ifndef FT_PRINT_H
 # define FT_PRINT_H
@@ -58,7 +59,6 @@ typedef struct	s_vars {
 	int		printlastspace;
 	int		printzero;
 	int		printprefix;
-	char	*print;
 }				t_vars;
 
 
@@ -68,6 +68,9 @@ typedef struct	s_vars {
 //void		sw(wchar_t *str, t_vars *e);
 void		u(uintmax_t nb, t_vars *e);
 void		n(intmax_t nb, t_vars *e);
-void		ft_parser(char *str);
+void		typeformat(t_vars *e);
+void		ftprint(va_list ap, t_vars *e);
+t_vars		ft_parser(char *str);
+void		ft_printvars(t_vars *e);
 
 #endif
