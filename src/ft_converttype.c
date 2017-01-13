@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 12:04:43 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 12:56:03 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@
 
 void		ftprint(va_list ap, t_vars *e)
 {
-	(e->f == 1) ? n((intmax_t)(va_arg(ap, int)), e) : 0;
-	(e->f == 2) ? n((intmax_t)(va_arg(ap, int)), e) : 0;
-	(e->f == 3) ? n((intmax_t)(va_arg(ap, int)), e) : 0;
-	(e->f == 4) ? n((intmax_t)(va_arg(ap, long int)), e) : 0;
-	(e->f == 5) ? n((intmax_t)(va_arg(ap, long long int)), e) : 0;
+	(e->f == 1) ? n((va_arg(ap, int)), e) : 0;
+	(e->f == 2) ? n((va_arg(ap, int)), e) : 0;
+	(e->f == 3) ? n((va_arg(ap, int)), e) : 0;
+	(e->f == 4) ? n((va_arg(ap, long int)), e) : 0;
+	(e->f == 5) ? n((va_arg(ap, long long int)), e) : 0;
 	(e->f == 6) ? n((va_arg(ap, intmax_t)), e) : 0;
-	(e->f == 7) ? n((intmax_t)(va_arg(ap, size_t)), e) : 0;
-	(e->f == 8) ? u((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
-	(e->f == 9) ? u((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
-	(e->f == 10) ? u((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
-	(e->f == 11) ? u((intmax_t)(va_arg(ap, unsigned long int)), e) : 0;
-	(e->f == 12) ? u((intmax_t)(va_arg(ap, unsigned long long int)), e) : 0;
+	(e->f == 7) ? n((va_arg(ap, size_t)), e) : 0;
+	(e->f == 8) ? u((va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 9) ? u((va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 10) ? u((va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 11) ? u((va_arg(ap, unsigned long int)), e) : 0;
+	(e->f == 12) ? u((va_arg(ap, unsigned long long int)), e) : 0;
 	(e->f == 13) ? u((va_arg(ap, intmax_t)), e) : 0;
-	(e->f == 14) ? n((intmax_t)(va_arg(ap, double)), e) : 0;
+	(e->f == 14) ? n((va_arg(ap, double)), e) : 0;
 	//(e->f == 15) ? sc((char)(va_arg(ap, int)), e) : 0;
 	//(e->f == 16) ? su((wchar_t)(va_arg(ap, wint_t)), e) : 0;
 	//(e->f == 17) ? sn((va_arg(ap, char*)), e) : 0;
 	//(e->f == 18) ? sw((va_arg(ap, wchar_t*)), e) : 0;
-	(e->f == 19) ? n((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
-	(e->f == 20) ? n((intmax_t)(va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 19) ? n((va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 20) ? n((va_arg(ap, unsigned int)), e) : 0;
 }
 
 

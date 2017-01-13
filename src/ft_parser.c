@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 12:30:05 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/13 12:53:51 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,8 @@ void	ft_removeplus(char *str, int *i, t_vars *e)
 	e->plus = TRUE;
 }
 
-void	ft_initialize_e(t_vars *e, int *i)
+void	ft_initialize_e(t_vars *e)
 {
-	*i = *i + 1;
 	e->align = 0;
 	e->zero = 0;
 	e->plus = 0;
@@ -161,7 +160,7 @@ t_vars		ft_printtype(char *str, int *i)
 {
 	t_vars e;
 	
-	ft_initialize_e(&e, i);
+	ft_initialize_e(&e);
 	if	(str[*i] == ' ')
 		ft_removespace(str, i, &e);
 	if (str[*i] == '-') 
@@ -195,10 +194,11 @@ t_vars		ft_parser(char *str)
 	i = -1;
 	while (str[++i] != '\0')
 	{
-		if(str[i] != '%')
-			ft_putchar(str[i]);
-		else
+		if(str[i] == '%')
+		{
+			i++;
 			e = ft_printtype(str, &i);
+		}
 	}
 	return (e);
 }
