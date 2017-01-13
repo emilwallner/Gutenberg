@@ -6,24 +6,18 @@
 #    By: ewallner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/12 18:20:33 by ewallner          #+#    #+#              #
-#    Updated: 2017/01/12 18:23:08 by ewallner         ###   ########.fr        #
+#    Updated: 2017/01/13 11:03:23 by ewallner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= fillit
+NAME= ft_printf.a
 
-SRC=	ft_unittest_emil.c\
-			ft_filetostr.c\
-			ft_errormsg.c\
-			ft_checkgrid.c\
-			ft_minsquare.c\
-			ft_checktetro.c\
-			ft_checkfile.c\
-			ft_makegrid.c\
-			ft_algotetro.c\
-			ft_tetrotoarray.c\
-			ft_tetrotogrid.c\
-			ft_tetroinit.c\
+SRC=	ft_atoi_base.c \
+		ft_converttype.c \
+		ft_error_handle.c \
+		ft_parser.c \
+		ft_printwchar.c \
+		main.c
 
 OBJ= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
