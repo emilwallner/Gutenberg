@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/14 20:23:18 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/14 21:22:08 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	ft_initialize_e(t_vars *e)
 	e->printchar = 'E';
 	e->printextra = 0;
 	e->printminus = 0;
+	e->printsign = '0';
 	e->printlen = 0;
 	e->printplus = 0;
 	e->printspace = 0;
@@ -144,10 +145,11 @@ void	ft_printvars(t_vars *e)
 	printf("e->len: %d\n", e->len);
 	printf("e->type: %d\n", e->type);
 	printf("e->base: %d\n", e->base);
-	printf("e->printchar: %d\n", e->printchar);
+	printf("e->printchar: %c\n", e->printchar);
 	printf("e->printminus: %d\n", e->printminus);
 	printf("e->printextra: %d\n", e->printextra);
 	printf("e->printlen: %d\n", e->printlen);
+	printf("e->printsign: %c\n", e->printsign);
 	printf("e->printplus: %d\n", e->printplus);
 	printf("e->printspace: %d\n", e->printspace);
 	printf("e->printprespace: %d\n", e->printprespace);
