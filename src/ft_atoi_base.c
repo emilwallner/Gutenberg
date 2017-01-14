@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 11:49:16 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/14 20:38:13 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,37 @@
 
 
 
-void		ft_size_of_intmax(intmax_t nb, t_vars *e)
+int		ft_size_of_intmax(intmax_t nb, t_vars *e)
 {
 	int		i;
 
-	if (e->type == 7 || e->type == 8)
+	if (e->type == OCTAL || e->type == UOCTAL)
 		e->base = 8;
-	else if (e->type == 11 || e->type == 12)
+	else if (e->type == HEX || e->type == UHEX || e->type == POINTER)
 		e->base = 16;
 	else 
 		e->base = 10;
 	i = 0;
-	if ((nb < 0) && (e->type == 'i' || e->type == 'd'))
+	if ((nb < 0) && (e->type == INTEGER || e->type == DECIMAL))
+	{
 		e->neg = 1;
+		nb = -nb;
+	}
 	while (nb)
 	{
 		nb /= e->base;
 		i++;
 	}
-	e->len = i;
+	return(i);
 }
 
-void		ft_size_of_uintmax(uintmax_t nb, t_vars *e)
+int		ft_size_of_uintmax(uintmax_t nb, t_vars *e)
 {
 	int		i;
 
-	if (e->type == 7 || e->type == 8)
+	if (e->type == OCTAL || e->type == UOCTAL)
 		e->base = 8;
-	else if (e->type == 11 || e->type == 12)
+	else if (e->type == HEX || e->type == UHEX || e->type == POINTER)
 		e->base = 16;
 	else 
 		e->base = 10;
@@ -54,7 +57,7 @@ void		ft_size_of_uintmax(uintmax_t nb, t_vars *e)
 		nb /= e->base;
 		i++;
 	}
-	e->len = i;
+	return (i);
 }
 /*
  * Hexa + and -
@@ -71,51 +74,65 @@ void	ft_printprefix(int i)
 {
 	if (i == UOCTAL || i == OCTAL)
 		ft_putchar('0');
-	if (i == HEX || i == POINTER)
+	else if (i == HEX)
 		ft_putstr("0x");
-	else
+	else if (i == UHEX)
 		ft_putstr("0X");
+	else 
+		ft_putstr("0x7fff");
 }
 
 void	nb_pre_flags(t_vars *e)
 {
 	if (e->printspace == TRUE)
 		ft_putchar(' ');
-	if (e->base == 10 && e->plus && e->neg == FALSE)
+	if (e->type == POINTER)
+		e->printprefix = 1;
+	if (e->base == 10 && e->plus == TRUE && e->neg == FALSE)
 	{
 		e->printplus = 1;
-		e->printlen = e->printlen + 1;
+		e->printextra = 1;
 	}
 	if (e->base == 10 && e->neg == TRUE)
 	{
 		e->printminus = 1;
-		e->printlen = e->printlen + 1;
+		e->printextra = 1;
 	}
 	if ((e->type == OCTAL || e->type == UOCTAL) && e->printprefix == 1)
-		e->printlen = e->printlen + 1;
-	else if ((e->type == HEX || e->type == UHEX || e->type == POINTER) && e->printprefix == 2)
-		e->printlen = e->printlen + 2;
+		e->printextra = 1;
+	else if ((e->type == HEX || e->type == UHEX) && e->printprefix == 1)
+		e->printextra = 2;
+	else if (e->type == POINTER)
+		e->printextra = 6;
+	if (e->pointlen > e->len)
+		e->printlen = e->pointlen;
 	else
 		e->printlen = e->len;
-	if (e->pointlen > e->printlen)
-		e->printlen = e->pointlen;
-	if ((e->printlen > e->width) && (e->printminus == TRUE))
+	if ((e->width > e->printlen + e->printextra) && e->printminus == TRUE && e->zero == TRUE)
 		ft_putchar('-');
 	if ((e->printlen > e->width) && (e->printplus == TRUE))
 		ft_putchar('+');
 	e->printchar = (e->zero) ? '0' : ' ';
-	if (e->align == FALSE && e->width > e->printlen)
-		ft_printspace((e->width - e->printlen), e->printchar);
+	if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen == FALSE)
+		ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar);
+	if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen)
+		ft_printspace((e->width - (e->printlen + e->printextra)), ' ');
+//	if ((e->width > e->printlen) && e->align == FALSE)
+//		ft_printspace((e->width - e->printlen), ' ');
 	if (e->printprefix == TRUE)
 		ft_printprefix(e->type);
-	if ((e->width > e->printlen) && e->align == FALSE)
-		ft_printspace((e->width - e->printlen), ' ');
-	if ((e->width >= e->printlen) && e->printminus == TRUE)
+	if ((e->printlen + e->printextra < e->width ) && e->printminus == TRUE && e->zero == FALSE)
+		ft_putchar('-');
+	if ((e->printlen + e->printextra == e->width) && e->printminus == TRUE)
 		ft_putchar('-');
 	if ((e->width >= e->printlen) && e->printplus == TRUE)
 		ft_putchar('+');
 	if (e->pointlen > e->len)
 		ft_printspace((e->pointlen - e->len), '0');
+	if (e->type == UHEX || e->type == HEX || e->type == POINTER)
+		e->base = 16;
+	if (e->type == OCTAL || e->type == UOCTAL)
+		e->base = 8;
 }
 
 void	nb_post_flags(t_vars *e)
@@ -128,6 +145,7 @@ char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
 {
 	char	*sixteen;
 	int			i;
+	int			len;
 	char		*dest;
 
 	i = 0;
@@ -137,9 +155,10 @@ char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
 		sixteen = "0123456789abcdef";
 	dest = malloc(sizeof(char) * (e->len + 1));
 	dest[e->len] = '\0';
+	len = e->len;
 	while(nb)
 	{
-		dest[--e->len] = sixteen[nb % e->base];
+		dest[--len] = sixteen[nb % e->base];
 		nb /= e->base;
 	}
 	return (dest);
@@ -149,6 +168,7 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 {
 	char	*sixteen;
 	int			i;
+	int			len;
 	char		*dest;
 
 	i = 0;
@@ -158,9 +178,12 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 		sixteen = "0123456789abcdef";
 	dest = malloc(sizeof(char) * (e->len + 1));
 	dest[e->len] = '\0';
+	len = e->len;
+	if(nb < 0)
+		nb = -nb;
 	while(nb)
 	{
-		dest[--e->len] = sixteen[nb % e->base];
+		dest[--len] = sixteen[nb % e->base];
 		nb /= e->base;
 	}
 	return (dest);
@@ -168,16 +191,21 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 
 void	n(intmax_t nb, t_vars *e)
 {
-	if(e->type == PERCENT)
+	char *str;
+	//if(e->type == PERCENT)
 
-	ft_size_of_intmax(nb, e);
+	e->len = ft_size_of_intmax(nb, e);
 	nb_pre_flags(e);
-	ft_atoi_intmax(nb, e);
+	str = ft_atoi_intmax(nb, e);
+	ft_putstr(str);
 }
 
 void u(uintmax_t nb, t_vars *e)
 {
-	ft_size_of_uintmax(nb, e);
+	char *str;
+
+	e->len = ft_size_of_uintmax(nb, e);
 	nb_pre_flags(e);
-	ft_atoi_uintmax(nb, e);
+	str = ft_atoi_uintmax(nb, e);
+	ft_putstr(str);
 }

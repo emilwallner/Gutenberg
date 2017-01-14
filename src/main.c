@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 12:32:54 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/14 20:38:47 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ int ft_printf(char *str, ...)
 	va_list ap;
 	int i;
 	t_vars	e;
-
+	
 	i = -1;
 	va_start(ap, str);
 	e = ft_parser(str);
 	typeformat(&e);
-	ft_printvars(&e);
+//	ft_printvars(&e);
+	printf(">>>\n\n\n");
 	ftprint(ap, &e);
+	printf("|");
+	printf("\n\n\n>>>");
 	ft_printvars(&e);
 	va_end(ap);
 
@@ -37,6 +40,9 @@ int ft_printf(char *str, ...)
 
 int main(void)
 {
-	ft_printf("Yay, it's working: %-20.23o", 42);
+	int		i;
+	i = -123123;
+	ft_printf("This is it: %010.7d|", i);
+	printf("%010.7d|", i);
 	return 0;
 }

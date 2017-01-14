@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:01:49 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/12 21:42:22 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/14 20:00:58 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,13 @@ void		ft_error_handle(t_vars *e)
 	if(e->type == POINTER && (e->plus == TRUE || e->flags != FALSE || e->zero \
 				== TRUE || e->printspace == TRUE))
 			ft_exit(e);
-
+	if(e->zero == TRUE && e->printprefix == TRUE)
+		ft_exit(e);
+	if(e->printprefix == TRUE && (e->type < 8 || e->type == 9 || e->type == 14))
+		ft_exit(e);
+	if(e->type == POINTER && e->pointlen > 0)
+		ft_exit(e);
+	if((e->type == POINTER || e->type == UHEX || e->type == HEX || e->type == OCTAL \
+			|| e->type == UOCTAL) && e->plus == 1)
+		ft_exit(e);
 }

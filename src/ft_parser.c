@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 12:53:51 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/14 20:23:18 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	ft_initialize_e(t_vars *e)
 	e->type = 0;
 	e->base = 10;
 	e->printchar = 'E';
+	e->printextra = 0;
 	e->printminus = 0;
 	e->printlen = 0;
 	e->printplus = 0;
@@ -145,6 +146,7 @@ void	ft_printvars(t_vars *e)
 	printf("e->base: %d\n", e->base);
 	printf("e->printchar: %d\n", e->printchar);
 	printf("e->printminus: %d\n", e->printminus);
+	printf("e->printextra: %d\n", e->printextra);
 	printf("e->printlen: %d\n", e->printlen);
 	printf("e->printplus: %d\n", e->printplus);
 	printf("e->printspace: %d\n", e->printspace);
@@ -163,13 +165,17 @@ t_vars		ft_printtype(char *str, int *i)
 	ft_initialize_e(&e);
 	if	(str[*i] == ' ')
 		ft_removespace(str, i, &e);
+	if (str[*i] == '0')
+		e.zero = ft_increse(i, e.zero);
+	if  (str[*i] == '#')
+		e.printprefix = ft_increse(i, e.printprefix);
 	if (str[*i] == '-') 
 		e.align = ft_increse(i, e.align);
 	if (str[*i] == '+')
 		ft_removeplus(str, i, &e);
 	if	(str[*i] == ' ')
 		ft_removespace(str, i, &e);
-	if (str[*i] == '0' && str[*i - 1] == '%')
+	if (str[*i] == '0')
 		e.zero = ft_increse(i, e.zero);
 	if (ft_isdigit(str[*i]) == TRUE)
 		e.width = ft_calcwidth(i, str);
@@ -178,8 +184,6 @@ t_vars		ft_printtype(char *str, int *i)
 		*i = *i + 1;
 		e.pointlen = ft_calcwidth(i, str);
 	}
-	if (str[*i] == '#')
-		e.printprefix = ft_increse(i, e.printprefix);
 	if (str[*i] == 'h' || str[*i] == 'j' || str[*i] == 'z' || str[*i] == 'l')
 		e.flags = ft_flagconv(i, str);
 	e.type = ft_findtype(str, i);
