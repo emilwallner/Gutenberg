@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/14 21:23:09 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 00:20:21 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,31 +108,35 @@ void	nb_pre_flags(t_vars *e)
 		e->printlen = e->pointlen;
 	else
 		e->printlen = e->len;
-	if ((e->width > e->printlen + e->printextra) && e->printextra == TRUE && e->zero == TRUE && e->pointlen == -1)
-		ft_putchar(e->printsign);
 	//if ((e->printlen > e->width) && (e->printplus == TRUE))
 	//	ft_putchar('+');
 	e->printchar = (e->zero) ? '0' : ' ';
 	if (e->type > 2)
 	{
+		if (e->printprefix == TRUE && e->zero == TRUE)
+			ft_printprefix(e->type);
 		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)))
 			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar);
+		if (e->printprefix == TRUE && e->zero == FALSE)
+			ft_printprefix(e->type);
 	}
 	if (e->type < 3)
 	{
+		if ((e->width > e->printlen + e->printextra) && e->printextra == TRUE && e->zero == TRUE && e->pointlen == -1)
+		ft_putchar(e->printsign);
 		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen == -1)
 			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar);
 		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen != -1)
 			ft_printspace((e->width - (e->printlen + e->printextra)), ' ');
+		if ((e->printlen + e->printextra < e->width ) && e->printextra == TRUE && e->pointlen != -1)
+			ft_putchar(e->printsign);
+		if ((e->printlen + e->printextra < e->width ) && e->printextra == TRUE && e->pointlen == -1 && e->zero == FALSE)
+			ft_putchar(e->printsign);
+		if ((e->printlen + e->printextra >= e->width) && e->printextra == TRUE)
+			ft_putchar(e->printsign);
 	}
 //	if ((e->width > e->printlen) && e->align == FALSE)
 //		ft_printspace((e->width - e->printlen), ' ');
-	if (e->printprefix == TRUE)
-		ft_printprefix(e->type);
-	if ((e->printlen + e->printextra < e->width ) && e->printextra == TRUE && e->pointlen != -1)
-		ft_putchar(e->printsign);
-	if ((e->printlen + e->printextra >= e->width) && e->printextra == TRUE)
-		ft_putchar(e->printsign);
 	//if ((e->width >= e->printlen) && e->printplus == TRUE)
 	//	ft_putchar('+');
 	if (e->pointlen > e->len)
