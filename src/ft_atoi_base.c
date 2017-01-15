@@ -6,13 +6,13 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 01:06:08 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 16:20:15 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include <stdio.h>
-#include "ft_print.h"
+#include "../includes/ft_print.h"
 
 
 
@@ -64,28 +64,28 @@ int		ft_size_of_uintmax(uintmax_t nb, t_vars *e)
  * Oct + and - 
  */
 
-void	ft_printspace(int i, char c)
+void	ft_printspace(int i, char c, t_vars *e)
 {
 	while (i-- > 0)
-		ft_putchar(c);
+		e->totcount += ft_putchar_count(c);
 }
 
-void	ft_printprefix(int i)
+void	ft_printprefix(int i, t_vars *e)
 {
 	if (i == UOCTAL || i == OCTAL)
-		ft_putchar('0');
+		e->totcount += ft_putchar_count('0');
 	else if (i == HEX)
-		ft_putstr("0x");
+		e->totcount += ft_putstr_count("0x");
 	else if (i == UHEX)
-		ft_putstr("0X");
+		e->totcount += ft_putstr_count("0X");
 	else 
-		ft_putstr("0x7fff");
+		e->totcount += ft_putstr_count("0x7fff");
 }
 
 void	nb_pre_flags(t_vars *e)
 {
 	if (e->printspace == TRUE)
-		ft_putchar(' ');
+		e->totcount += ft_putchar_count(' ');
 	if (e->type == POINTER)
 		e->printprefix = 1;
 	if (e->base == 10 && e->plus == TRUE && e->neg == FALSE)
@@ -112,29 +112,29 @@ void	nb_pre_flags(t_vars *e)
 	if (e->type > 2 && (e->type != 14 && e->type != 9))
 	{
 		if (e->printprefix == TRUE && e->zero == TRUE)
-			ft_printprefix(e->type);
+			ft_printprefix(e->type, e);
 		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)))
-			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar);
+			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar, e);
 		if (e->printprefix == TRUE && e->zero == FALSE)
-			ft_printprefix(e->type);
+			ft_printprefix(e->type, e);
 	}
 	if (e->type < 3 || e->type == 14 || e->type == 9)
 	{
 		if ((e->width > e->printlen + e->printextra) && e->printextra == TRUE && e->zero == TRUE && e->pointlen == -1)
-		ft_putchar(e->printsign);
+		e->totcount += ft_putchar_count(e->printsign);
 		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen == -1)
-			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar);
+			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar, e);
 		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen != -1)
-			ft_printspace((e->width - (e->printlen + e->printextra)), ' ');
+			ft_printspace((e->width - (e->printlen + e->printextra)), ' ', e);
 		if ((e->printlen + e->printextra < e->width ) && e->printextra == TRUE && e->pointlen != -1)
-			ft_putchar(e->printsign);
+			e->totcount += ft_putchar_count(e->printsign);
 		if ((e->printlen + e->printextra < e->width ) && e->printextra == TRUE && e->pointlen == -1 && e->zero == FALSE)
-			ft_putchar(e->printsign);
+			e->totcount += ft_putchar_count(e->printsign);
 		if ((e->printlen + e->printextra >= e->width) && e->printextra == TRUE)
-			ft_putchar(e->printsign);
+			e->totcount += ft_putchar_count(e->printsign);
 	}
 	if (e->pointlen > e->len + e->printextra)
-		ft_printspace((e->pointlen - e->len), '0');
+		ft_printspace((e->pointlen - e->len), '0', e);
 	if (e->type == UHEX || e->type == HEX || e->type == POINTER)
 		e->base = 16;
 	if (e->type == OCTAL || e->type == UOCTAL)
@@ -144,7 +144,7 @@ void	nb_pre_flags(t_vars *e)
 void	nb_post_flags(t_vars *e)
 {
 	if (e->width > e->printlen + e->printextra && e->align == TRUE)
-		ft_printspace((e->width - (e->printlen + e->printextra)), ' ');
+		ft_printspace((e->width - (e->printlen + e->printextra)), ' ', e);
 }
 
 char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
@@ -203,7 +203,7 @@ void	n(intmax_t nb, t_vars *e)
 	e->len = ft_size_of_intmax(nb, e);
 	nb_pre_flags(e);
 	str = ft_atoi_intmax(nb, e);
-	ft_putstr(str);
+	e->totcount += ft_putstr_count(str);
 	nb_post_flags(e);
 }
 
@@ -214,6 +214,6 @@ void u(uintmax_t nb, t_vars *e)
 	e->len = ft_size_of_uintmax(nb, e);
 	nb_pre_flags(e);
 	str = ft_atoi_uintmax(nb, e);
-	ft_putstr(str);
+	e->totcount += ft_putstr_count(str);
 	nb_post_flags(e);
 }

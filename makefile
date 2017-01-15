@@ -6,7 +6,7 @@
 #    By: ewallner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/12 18:20:33 by ewallner          #+#    #+#              #
-#    Updated: 2017/01/13 11:28:11 by ewallner         ###   ########.fr        #
+#    Updated: 2017/01/15 16:21:31 by ewallner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC=	ft_atoi_base.c \
 		ft_error_handle.c \
 		ft_parser.c \
 		ft_printwchar.c \
+		ft_chars.c \
+		ft_strings.c \
 		main.c
 
 OBJ= $(addprefix $(OBJDIR),$(SRC:.c=.o))

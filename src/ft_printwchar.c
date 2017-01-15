@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/13 11:36:26 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 17:41:01 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../libft/libft.h"
+#include "../includes/ft_print.h"
 
-void	snprint(char *s)
+int		wchars_size(wchar_t c)
 {
-	if (!s)
-		ft_putstr("(Null)");
+	if (c < 128)
+		return (1);
+	else if (c < 2048)
+		return (2);
+	else if (c < 65536)
+		return (3);
 	else
-		write(1, s, ft_strlen(s));
+		return (4);
 }
-
 void	ft_printwchar_norm(wchar_t c, unsigned short *mask, unsigned char bit)
 {
 	bit = mask[3] | (c >> 18 & mask[5]);
@@ -63,3 +67,33 @@ void	ft_printwchar(wchar_t c)
 	else
 		ft_printwchar_norm(c, mask, bit);
 }
+
+void	wchars(wchar_t c, t_vars *e)
+{
+	e->len = wchars_size(c);
+	if (e->width < e->len)
+	{
+		ft_printwchar(c);
+		e->totcount += e->len;
+	}
+	if (e->width > e->len && e->align == FALSE)
+	{
+		ft_printspace(e->width - e->len, ' ', e);
+		ft_printwchar(c);
+		e->totcount += e->len;
+	} 
+	if (e->width > e->len && e->align == TRUE)
+	{
+		ft_printwchar(c);
+		e->totcount += e->len;
+		ft_printspace(e->width - e->len, ' ', e);
+	}
+	
+}
+
+void	wstring(wchar_t *c, t_vars *e)
+{
+
+}
+
+

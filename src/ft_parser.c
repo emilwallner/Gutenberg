@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 00:48:17 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 17:00:00 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	ft_initialize_e(t_vars *e)
 	e->printlastspace = 0;
 	e->printzero = 0;
 	e->printprefix = 0;
+	e->nb = NULL;
+	e->totcount = 0;
 }
 
 int		ft_findtype(char *str, int *i)
@@ -156,7 +158,8 @@ void	ft_printvars(t_vars *e)
 	printf("e->printlastspace: %d\n", e->printlastspace);
 	printf("e->printzero: %d\n", e->printzero);
 	printf("e->printprefix: %d\n", e->printprefix);
-	
+	//printf("e->nb: %s/", e->nb);
+	printf("e->totcount: %d\n", e->totcount);
 	printf("New var>>>\n\n\n");
 }
 

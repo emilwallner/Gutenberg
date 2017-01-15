@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 01:01:33 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 17:13:25 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int ft_printf(char *str, ...)
 	int i;
 	t_vars	e;
 	
+	e.totcount = 0;
 	i = -1;
 	va_start(ap, str);
 	e = ft_parser(str);
@@ -41,8 +42,8 @@ int ft_printf(char *str, ...)
 int main(void)
 {
 	int		i;
-	i = -123123;
-	ft_printf("%#5.12O|", i);
-	printf("%#5.12O", i);
+	i = 'o';
+	ft_printf("%10s|", "0123456789");
+	printf("%10s|", "0123456789");
 	return 0;
 }
