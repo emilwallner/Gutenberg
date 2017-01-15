@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 19:09:25 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 22:21:09 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 00:23:55 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int		wstrings_size(wchar_t *str, int i, t_vars *e)
 	int		len;
 	int		totlen;
 	int		charlen;
+	int		end;
 
+	end = 0;
 	charlen = 0;
 	totlen = 0;
 	len = 0;
@@ -32,11 +34,16 @@ int		wstrings_size(wchar_t *str, int i, t_vars *e)
 	}
 	else
 	{
-		while (str[len] && totlen + charlen < i)
+		while (str[len] && totlen <= i && end != 1)
 		{
 			charlen = wchars_size(str[len], e);
-			if ((charlen + totlen) < i)
+			if ((charlen + totlen) <= i)
+			{
 				totlen += charlen;
+				charlen = 0;
+			}
+			if(charlen + totlen >= i)
+				end = 1;
 			len++;
 		}
 	}
@@ -48,18 +55,23 @@ void		ft_putwstr_cut(wchar_t *str, int i, t_vars *e)
 	int		len;
 	int		totlen;
 	int		charlen;
+	int		end;
 
+	end = 0;
 	totlen = 0;
 	charlen = 0;
 	len = 0;
-	while(str[len] != '\0' && totlen + charlen < i)
+	while(str[len] != '\0' && totlen <= i && end != 1)
 	{
 		charlen = (wchars_size(str[len], e));
-		if(totlen + charlen < i)
+		if(totlen + charlen <= i)
 		{
 			ft_printwchar(str[len]);
 			totlen += charlen;
+			charlen = 0;
 		}
+		if(charlen + totlen >= i)
+			end = 1;
 		len++;
 	}
 }
@@ -67,8 +79,6 @@ void		ft_putwstr_cut(wchar_t *str, int i, t_vars *e)
 
 void	wstrings(wchar_t *str, t_vars *e)
 {
-	//int		len;
-
 	e->printlen = wstrings_size(str, e->pointlen, e);
 	if (e->width < e->printlen)
 		ft_putwstr_cut(str, e->printlen, e);
