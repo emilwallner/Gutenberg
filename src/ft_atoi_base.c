@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 00:20:21 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 01:06:08 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,8 @@ void	nb_pre_flags(t_vars *e)
 		e->printlen = e->pointlen;
 	else
 		e->printlen = e->len;
-	//if ((e->printlen > e->width) && (e->printplus == TRUE))
-	//	ft_putchar('+');
 	e->printchar = (e->zero) ? '0' : ' ';
-	if (e->type > 2)
+	if (e->type > 2 && (e->type != 14 && e->type != 9))
 	{
 		if (e->printprefix == TRUE && e->zero == TRUE)
 			ft_printprefix(e->type);
@@ -120,7 +118,7 @@ void	nb_pre_flags(t_vars *e)
 		if (e->printprefix == TRUE && e->zero == FALSE)
 			ft_printprefix(e->type);
 	}
-	if (e->type < 3)
+	if (e->type < 3 || e->type == 14 || e->type == 9)
 	{
 		if ((e->width > e->printlen + e->printextra) && e->printextra == TRUE && e->zero == TRUE && e->pointlen == -1)
 		ft_putchar(e->printsign);
@@ -135,11 +133,7 @@ void	nb_pre_flags(t_vars *e)
 		if ((e->printlen + e->printextra >= e->width) && e->printextra == TRUE)
 			ft_putchar(e->printsign);
 	}
-//	if ((e->width > e->printlen) && e->align == FALSE)
-//		ft_printspace((e->width - e->printlen), ' ');
-	//if ((e->width >= e->printlen) && e->printplus == TRUE)
-	//	ft_putchar('+');
-	if (e->pointlen > e->len)
+	if (e->pointlen > e->len + e->printextra)
 		ft_printspace((e->pointlen - e->len), '0');
 	if (e->type == UHEX || e->type == HEX || e->type == POINTER)
 		e->base = 16;
@@ -149,8 +143,8 @@ void	nb_pre_flags(t_vars *e)
 
 void	nb_post_flags(t_vars *e)
 {
-	if (e->width > e->printlen)
-		ft_printspace((e->width - e->printlen), ' ');
+	if (e->width > e->printlen + e->printextra && e->align == TRUE)
+		ft_printspace((e->width - (e->printlen + e->printextra)), ' ');
 }
 
 char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
@@ -210,6 +204,7 @@ void	n(intmax_t nb, t_vars *e)
 	nb_pre_flags(e);
 	str = ft_atoi_intmax(nb, e);
 	ft_putstr(str);
+	nb_post_flags(e);
 }
 
 void u(uintmax_t nb, t_vars *e)
@@ -220,4 +215,5 @@ void u(uintmax_t nb, t_vars *e)
 	nb_pre_flags(e);
 	str = ft_atoi_uintmax(nb, e);
 	ft_putstr(str);
+	nb_post_flags(e);
 }

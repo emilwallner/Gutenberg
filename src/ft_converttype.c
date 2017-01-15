@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/14 21:10:07 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 00:52:10 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void		typeformat(t_vars *e)
 	((e->type < 3) && e->flags == 4) ? e->f = 5 : 0;
 	((e->type < 3) && e->flags == 5) ? e->f = 6 : 0;
 	((e->type < 3) && e->flags == 6) ? e->f = 7 : 0;
-	((e->type > 10) && e->flags == 0) ? e->f = 8 : 0;
-	((e->type > 10) && e->flags == 1) ? e->f = 9 : 0;
-	((e->type > 10) && e->flags == 2) ? e->f = 10 : 0;
+	((e->type > 8) && e->flags == 0) ? e->f = 8 : 0;
+	((e->type > 8) && e->flags == 1) ? e->f = 9 : 0;
+	((e->type > 8) && e->flags == 2) ? e->f = 10 : 0;
 	((e->type > 8) && e->flags == 3) ? e->f = 11 : 0;
 	((e->type > 8) && e->flags == 4) ? e->f = 12 : 0;
 	((e->type > 8) && e->flags == 5) ? e->f = 13 : 0;
