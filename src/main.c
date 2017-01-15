@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 17:13:25 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 22:22:04 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdarg.h>
 #include "../libft/libft.h"
 #include "ft_print.h"
+#include <locale.h>
 
 int ft_printf(char *str, ...)
 {
@@ -33,6 +34,7 @@ int ft_printf(char *str, ...)
 	printf("|");
 	printf("\n\n\n>>>");
 	ft_printvars(&e);
+	printf("\nThis is my len: %d\n", e.totcount + 1);
 	va_end(ap);
 
 	return val;
@@ -41,9 +43,11 @@ int ft_printf(char *str, ...)
 
 int main(void)
 {
-	int		i;
-	i = 'o';
-	ft_printf("%10s|", "0123456789");
-	printf("%10s|", "0123456789");
+
+	setlocale (LC_ALL, "");
+	wchar_t		*i;
+	i = L"❤︎  ✰";
+	ft_printf("%.6ls|", i);
+	printf("\nThis is it: %d", printf("%.6ls|", i));
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 17:41:01 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/15 21:38:50 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@
 #include "../libft/libft.h"
 #include "../includes/ft_print.h"
 
-int		wchars_size(wchar_t c)
+int		wchars_size(wchar_t c, t_vars *e)
 {
+	if (c > 55295 && c < 57344)
+		ft_exit(e);
 	if (c < 128)
 		return (1);
 	else if (c < 2048)
 		return (2);
 	else if (c < 65536)
 		return (3);
-	else
+	else if (c < 1114112)
 		return (4);
+	else 
+		ft_exit(e);
+	return (0);
 }
 void	ft_printwchar_norm(wchar_t c, unsigned short *mask, unsigned char bit)
 {
@@ -64,13 +69,13 @@ void	ft_printwchar(wchar_t c)
 		bit = (mask[0] | (c & mask[4]));
 		write(1, &bit, 1);
 	}
-	else
+	else if (c < 1114112)
 		ft_printwchar_norm(c, mask, bit);
 }
 
 void	wchars(wchar_t c, t_vars *e)
 {
-	e->len = wchars_size(c);
+	e->len = wchars_size(c, e);
 	if (e->width < e->len)
 	{
 		ft_printwchar(c);
@@ -91,9 +96,5 @@ void	wchars(wchar_t c, t_vars *e)
 	
 }
 
-void	wstring(wchar_t *c, t_vars *e)
-{
-
-}
 
 
