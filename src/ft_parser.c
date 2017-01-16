@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 17:00:00 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 12:49:13 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_initialize_e(t_vars *e)
 	e->f = -1;
 	e->flags = 0;
 	e->len = 0;
-	e->type = 0;
+	e->type = -1;
 	e->base = 10;
 	e->printchar = 'E';
 	e->printextra = 0;
@@ -197,6 +197,7 @@ t_vars		ft_printtype(char *str, int *i)
 	return (e);
 }
 
+/*
 t_vars		ft_parser(char *str)
 {
 	int i;
@@ -212,4 +213,4 @@ t_vars		ft_parser(char *str)
 		}
 	}
 	return (e);
-}
+}*/

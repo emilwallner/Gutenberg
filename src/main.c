@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 10:22:26 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 11:47:48 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 int ft_printf(char *str, ...)
 {
-	int val = 0;
 	va_list ap;
 	int i;
 	t_vars	e;
@@ -26,21 +25,25 @@ int ft_printf(char *str, ...)
 	e.totcount = 0;
 	i = -1;
 	va_start(ap, str);
-	e = ft_parser(str);
-	typeformat(&e);
-//	ft_printvars(&e);
-	printf(">>>\n\n\n");
-	ftprint(ap, &e);
-	printf("|");
-	printf("\n\n\n>>>");
-	ft_printvars(&e);
-	printf("\nThis is my len: %d\n", e.totcount + 1);
+	while (str[++i] != '\0')
+	{
+		if (str[i] != '%')
+			e.totcount = ft_putchar_count(str[i]);
+		if(str[i] == '%')
+		{
+			i++;
+			e = ft_printtype(str, &i);
+			typeformat(&e);
+			ft_error_handle(&e);
+			ftprint(ap, &e);
+		}
+	}
 	va_end(ap);
 
-	return val;
+	return (e.totcount);
 }
 
-
+/*
 int main(void)
 {
 
@@ -49,7 +52,7 @@ int main(void)
 	wchar_t		c;
 	i = L"✰ 〶e●";
 	c = L'⦿';
-	ft_printf("%010%");
-	printf("\nThis is it: %d", printf(""));
+	ft_printf("%s%#x", "This is the moment of truth, a number: ", 100);
+	//printf("\nThis is it: %d", printf(""));
 	return 0;
-}
+}*/

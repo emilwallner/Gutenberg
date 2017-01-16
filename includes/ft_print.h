@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 19:36:40 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 12:36:03 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../libft/libft.h"
@@ -65,6 +65,9 @@ typedef struct	s_vars {
 	char	*nb;
 }				t_vars;
 
+int			ft_printf(char *str, ...);
+t_vars		ft_printtype(char *str, int *i);
+void		ft_error_handle(t_vars *e);
 void		wstrings(wchar_t *str, t_vars *e);
 void		ft_exit(t_vars *e);
 int			wchars_size(wchar_t c, t_vars *e);

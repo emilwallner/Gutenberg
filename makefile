@@ -6,11 +6,11 @@
 #    By: ewallner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/12 18:20:33 by ewallner          #+#    #+#              #
-#    Updated: 2017/01/15 20:56:25 by ewallner         ###   ########.fr        #
+#    Updated: 2017/01/16 12:48:59 by ewallner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= ft_printf.a
+NAME= libftprintf.a
 
 SRC=	ft_atoi_base.c \
 		ft_converttype.c \
@@ -25,6 +25,7 @@ SRC=	ft_atoi_base.c \
 OBJ= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 CC= gcc
+RANLIB = ranlib
 CFLAGS= -Wall -Wextra -Werror
 
 LIBFT= ./libft/libft.a
@@ -45,20 +46,20 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 
 libft: $(LIBFT)
 
+clean: remoblib
+	rm -rf $(OBJDIR)
+
 $(LIBFT):
 	make -C ./libft
 
 $(NAME): obj libft $(OBJ) 
-	$(CC) $(LIBLINK) -o $(NAME) $(OBJ)
+	ar rc $(NAME) $(LIBFT) $(OBJ)
 
 remlib:
 	rm -rf $(LIBFT)
 
 remoblib:
 	make fclean -C ./libft/
-
-clean: remoblib
-	rm -rf $(OBJDIR)
 
 fclean: clean remlib
 	rm -rf $(NAME)
