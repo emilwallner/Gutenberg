@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 16:20:15 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 09:54:27 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 int		ft_size_of_intmax(intmax_t nb, t_vars *e)
 {
 	int		i;
-
+	if(nb == 0)
+		return (0);
 	if (e->type == OCTAL || e->type == UOCTAL)
 		e->base = 8;
 	else if (e->type == HEX || e->type == UHEX || e->type == POINTER)
@@ -45,6 +46,8 @@ int		ft_size_of_uintmax(uintmax_t nb, t_vars *e)
 {
 	int		i;
 
+	if(nb == 0)
+		return (0);
 	if (e->type == OCTAL || e->type == UOCTAL)
 		e->base = 8;
 	else if (e->type == HEX || e->type == UHEX || e->type == POINTER)
@@ -98,7 +101,9 @@ void	nb_pre_flags(t_vars *e)
 		e->printsign = '-';
 		e->printextra = 1;
 	}
-	if ((e->type == OCTAL || e->type == UOCTAL) && e->printprefix == 1)
+	if(e->len == 0)
+		e->printextra = 0;
+	else if ((e->type == OCTAL || e->type == UOCTAL) && e->printprefix == 1)
 		e->printextra = 1;
 	else if ((e->type == HEX || e->type == UHEX) && e->printprefix == 1)
 		e->printextra = 2;
@@ -111,11 +116,11 @@ void	nb_pre_flags(t_vars *e)
 	e->printchar = (e->zero) ? '0' : ' ';
 	if (e->type > 2 && (e->type != 14 && e->type != 9))
 	{
-		if (e->printprefix == TRUE && e->zero == TRUE)
+		if (e->printprefix == TRUE && e->zero == TRUE && e->printextra)
 			ft_printprefix(e->type, e);
 		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)))
 			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar, e);
-		if (e->printprefix == TRUE && e->zero == FALSE)
+		if (e->printprefix == TRUE && e->zero == FALSE && e->printextra)
 			ft_printprefix(e->type, e);
 	}
 	if (e->type < 3 || e->type == 14 || e->type == 9)
@@ -155,6 +160,8 @@ char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
 	char		*dest;
 
 	i = 0;
+	if(nb == 0)
+		return("0");
 	if (e->type == UHEX || e->type == UOCTAL)
 		sixteen = "0123456789ABCDEF";
 	else
@@ -178,6 +185,8 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 	char		*dest;
 
 	i = 0;
+	if(nb == 0)
+		return ("0");
 	if (e->type == UHEX || e->type == UOCTAL)
 		sixteen = "0123456789ABCDEF";
 	else

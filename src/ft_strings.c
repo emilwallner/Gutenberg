@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:31:03 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 17:33:03 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 10:08:56 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 
 int		ft_putstr_count(char *str)
 {
+	int		i;
+
+	i = 0;
 	if (!str)
 		ft_putstr_count("(null)");
 	else
-		write(1, str, sizeof(str));
-	return (sizeof(str));
+		while (str[i] != '\0')
+		{
+			write(1, &str[i], 1);
+			i++;
+		}
+	return (i);
 }
 
 void		ft_putstr_cut(char *str, int width, t_vars *e)

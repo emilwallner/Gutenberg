@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 00:23:27 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 10:22:26 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ int main(void)
 
 	setlocale (LC_ALL, "");
 	wchar_t		*i;
+	wchar_t		c;
 	i = L"✰ 〶e●";
-	ft_printf("%.9ls", i);
-	printf("\nThis is it: %d", printf("%.9ls|", i));
+	c = L'⦿';
+	ft_printf("%010%");
+	printf("\nThis is it: %d", printf(""));
 	return 0;
 }
