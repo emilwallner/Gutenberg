@@ -6,11 +6,11 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:21:10 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 11:22:24 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 15:19:57 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_print.h"
+#include "ft_print.h"
 
 int		ft_putchar_count(char c)
 {

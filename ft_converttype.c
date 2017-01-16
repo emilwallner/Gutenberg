@@ -6,15 +6,14 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 19:36:38 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 22:27:04 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_print.h>
 #include <stdarg.h>
 #include <wchar.h>
-#include "../includes/ft_print.h"
-#include "../libft/libft.h"
+#include "ft_print.h"
+#include "libft.h"
 
 
 void		ftprint(va_list ap, t_vars *e)

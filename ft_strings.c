@@ -6,11 +6,11 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:31:03 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 10:08:56 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 23:17:18 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_print.h"
+#include "ft_print.h"
 #include "stdio.h"
 
 int		ft_putstr_count(char *str)
@@ -21,10 +21,11 @@ int		ft_putstr_count(char *str)
 	if (!str)
 		ft_putstr_count("(null)");
 	else
-		while (str[i] != '\0')
+		while (*str)
 		{
-			write(1, &str[i], 1);
+			ft_putchar(*str);
 			i++;
+			str++;
 		}
 	return (i);
 }
@@ -34,14 +35,12 @@ void		ft_putstr_cut(char *str, int width, t_vars *e)
 	int		i;
 
 	i = 0;
-	if (!str)
-		ft_putstr_count("(null)");
-	else
-		while(str[i] != '\0' && i < width)
-		{
-			e->totcount += ft_putchar_count(str[i]);
-			i++;
-		}
+	while (i < width && *str)
+	{
+		e->totcount += ft_putchar_count(*str);
+		i++;
+		str++;
+	}
 }
 
 void	strings(char *str, t_vars *e)
@@ -51,20 +50,18 @@ void	strings(char *str, t_vars *e)
 	if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
-	if(len < e->pointlen)
+	if(e->pointlen < len && e->pointlen != -1)
 		e->printlen = e->pointlen;
 	else 
 		e->printlen = len;
-	if (e->width == -1 && e->align == FALSE && e->pointlen == -1)
+	if (e->width <= e->printlen)
 		ft_putstr_cut(str, e->printlen, e);
-	if (e->width == len && e->pointlen == -1)
-		ft_putstr_cut(str, e->printlen, e);
-	if (e->width > len && e->align == TRUE)
+	else if (e->width > e->printlen && e->align == TRUE)
 	{
 		ft_putstr_cut(str, e->printlen, e);
 		ft_printspace(e->width - e->printlen, ' ', e);
 	}
-	if (e->width > len && e->align == FALSE)
+	else if (e->width > e->printlen && e->align == FALSE)
 	{
 		ft_printspace(e->width - e->printlen, ' ', e);
 		ft_putstr_cut(str, e->printlen, e);

@@ -6,11 +6,11 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 19:09:25 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 00:23:55 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 14:15:19 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_print.h"
+#include "ft_print.h"
 #include "stdio.h"
 
 int		wstrings_size(wchar_t *str, int i, t_vars *e)

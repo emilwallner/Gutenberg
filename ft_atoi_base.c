@@ -6,13 +6,13 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 09:54:27 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/17 00:22:04 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 #include <stdio.h>
-#include "../includes/ft_print.h"
+#include "ft_print.h"
 
 
 
@@ -87,28 +87,8 @@ void	ft_printprefix(int i, t_vars *e)
 
 void	nb_pre_flags(t_vars *e)
 {
-	if (e->printspace == TRUE)
-		e->totcount += ft_putchar_count(' ');
-	if (e->type == POINTER)
-		e->printprefix = 1;
-	if (e->base == 10 && e->plus == TRUE && e->neg == FALSE)
-	{
-		e->printsign = '+';
-		e->printextra = 1;
-	}
-	if (e->base == 10 && e->neg == TRUE)
-	{
-		e->printsign = '-';
-		e->printextra = 1;
-	}
-	if(e->len == 0)
-		e->printextra = 0;
-	else if ((e->type == OCTAL || e->type == UOCTAL) && e->printprefix == 1)
-		e->printextra = 1;
-	else if ((e->type == HEX || e->type == UHEX) && e->printprefix == 1)
-		e->printextra = 2;
-	else if (e->type == POINTER)
-		e->printextra = 6;
+	//if(e->len == 0)
+	//	e->printextra = 0;
 	if (e->pointlen > e->len)
 		e->printlen = e->pointlen;
 	else
@@ -123,27 +103,17 @@ void	nb_pre_flags(t_vars *e)
 		if (e->printprefix == TRUE && e->zero == FALSE && e->printextra)
 			ft_printprefix(e->type, e);
 	}
-	if (e->type < 3 || e->type == 14 || e->type == 9)
+	if ((e->type < 3 || e->type == 14 || e->type == 9) && e->printextra)
 	{
-		if ((e->width > e->printlen + e->printextra) && e->printextra == TRUE && e->zero == TRUE && e->pointlen == -1)
-		e->totcount += ft_putchar_count(e->printsign);
-		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen == -1)
+		if ((e->width <= e->printlen + e->printextra && e->pointlen == -1) || e->align || e->zero)
+			e->totcount += ft_putchar_count(e->printsign);
+		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)))
 			ft_printspace((e->width - (e->printlen + e->printextra)), e->printchar, e);
-		if (e->align == FALSE && (e->width > (e->printlen + e->printextra)) && e->pointlen != -1)
-			ft_printspace((e->width - (e->printlen + e->printextra)), ' ', e);
-		if ((e->printlen + e->printextra < e->width ) && e->printextra == TRUE && e->pointlen != -1)
-			e->totcount += ft_putchar_count(e->printsign);
-		if ((e->printlen + e->printextra < e->width ) && e->printextra == TRUE && e->pointlen == -1 && e->zero == FALSE)
-			e->totcount += ft_putchar_count(e->printsign);
-		if ((e->printlen + e->printextra >= e->width) && e->printextra == TRUE)
+		if ((e->printlen + e->printextra < e->width) && (!e->align || e->pointlen != -1))
 			e->totcount += ft_putchar_count(e->printsign);
 	}
 	if (e->pointlen > e->len + e->printextra)
 		ft_printspace((e->pointlen - e->len), '0', e);
-	if (e->type == UHEX || e->type == HEX || e->type == POINTER)
-		e->base = 16;
-	if (e->type == OCTAL || e->type == UOCTAL)
-		e->base = 8;
 }
 
 void	nb_post_flags(t_vars *e)
@@ -208,11 +178,26 @@ void	n(intmax_t nb, t_vars *e)
 {
 	char *str;
 	//if(e->type == PERCENT)
-
 	e->len = ft_size_of_intmax(nb, e);
+	if (e->plus && !e->neg)
+	{
+		e->printsign = '+';
+		e->printextra = 1;
+	}
+	if (e->printspace && !e->printplus && !e->neg)
+	{
+		e->printextra = 1;
+		e->printsign = ' ';
+	}
+	if (e->neg)
+	{
+		e->printsign = '-';
+		e->printextra = 1;
+	}
 	nb_pre_flags(e);
 	str = ft_atoi_intmax(nb, e);
-	e->totcount += ft_putstr_count(str);
+	if(!(e->pointlen == 0 && *str == '0'))
+		e->totcount += ft_putstr_count(str);
 	nb_post_flags(e);
 }
 
@@ -220,9 +205,16 @@ void u(uintmax_t nb, t_vars *e)
 {
 	char *str;
 
+	if ((e->type == OCTAL || e->type == UOCTAL) && e->printprefix == 1)
+		e->printextra = 1;
+	else if ((e->type == HEX || e->type == UHEX) && e->printprefix == 1)
+		e->printextra = 2;
+	else if (e->type == POINTER)
+		e->printextra = 6;
 	e->len = ft_size_of_uintmax(nb, e);
 	nb_pre_flags(e);
 	str = ft_atoi_uintmax(nb, e);
-	e->totcount += ft_putstr_count(str);
+	if(!(e->pointlen == 0 && *str == '0'))
+		e->totcount += ft_putstr_count(str);
 	nb_post_flags(e);
 }

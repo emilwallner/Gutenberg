@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_final_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 12:31:31 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 12:35:36 by ewallner         ###   ########.fr       */
+/*   Created: 2017/01/09 16:39:13 by ewallner          #+#    #+#             */
+/*   Updated: 2017/01/09 17:06:47 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft_print.h"
+#include "libft.h"
 
-int		main(void)
+void		ft_print_zeroes(int i)
 {
-	ft_printf("This is me");
-	return 0;
+	int c;
+
+	c = -1;
+	while(c++ < i)
+		ft_putchar('0');
 }

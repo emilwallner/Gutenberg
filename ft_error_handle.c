@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:01:49 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 11:42:40 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 17:50:54 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 void		ft_exit(t_vars *e)
 {
-	free(&e);
-	ft_putstr("<<< (╯°□°）╯︵ ┻━┻ \n (ヘ･_･)ヘ┳━┳ \n Usage: man 3 printf");
+	e->align = 0;
 	exit(-1);
 }
 
@@ -38,6 +37,6 @@ void		ft_error_handle(t_vars *e)
 	if((e->type == POINTER || e->type == UHEX || e->type == HEX || e->type == OCTAL \
 			|| e->type == UOCTAL) && e->plus == 1)
 		ft_exit(e);
-	if(e->printspace == TRUE && (e->type >= 3 && e->type <= 7))
+	if(e->printspace == TRUE && (e->type >= 3 && e->type <= 6))
 		ft_exit(e);
 }

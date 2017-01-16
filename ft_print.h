@@ -6,10 +6,10 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 12:36:03 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 21:53:46 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../libft/libft.h"
+#include "libft.h"
 #include <stdarg.h>
 
 #ifndef FT_PRINT_H
@@ -66,7 +66,7 @@ typedef struct	s_vars {
 }				t_vars;
 
 int			ft_printf(char *str, ...);
-t_vars		ft_printtype(char *str, int *i);
+char		*ft_printtype(char *str, t_vars *e);
 void		ft_error_handle(t_vars *e);
 void		wstrings(wchar_t *str, t_vars *e);
 void		ft_exit(t_vars *e);
@@ -81,10 +81,6 @@ int			ft_putstr_count(char *str);
 int			ft_putchar_count(char c);
 void		ft_initialize_e(t_vars *e);
 int			ft_size_of_intmax(intmax_t nb, t_vars *e);
-//void		sn(char *str, t_vars *e);
-//void		sc(char	 c, t_vars *e);
-//void		su(wchar_t c, t_vars *e);
-//void		sw(wchar_t *str, t_vars *e);
 void		u(uintmax_t nb, t_vars *e);
 void		n(intmax_t nb, t_vars *e);
 void		typeformat(t_vars *e);

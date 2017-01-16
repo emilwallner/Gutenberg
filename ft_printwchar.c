@@ -6,15 +6,15 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/15 21:38:50 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/16 14:16:04 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../libft/libft.h"
-#include "../includes/ft_print.h"
+#include "libft.h"
+#include "ft_print.h"
 
 int		wchars_size(wchar_t c, t_vars *e)
 {
