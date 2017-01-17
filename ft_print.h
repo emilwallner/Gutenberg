@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 21:53:46 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/17 16:11:03 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -64,6 +64,11 @@ typedef struct	s_vars {
 	int		totcount;
 	char	*nb;
 }				t_vars;
+
+int			ft_size_of_intmax(intmax_t nb, t_vars *e);
+int			ft_size_of_uintmax(uintmax_t nb, t_vars *e);
+char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e);
+char		*ft_atoi_intmax(intmax_t nb, t_vars *e);
 
 int			ft_printf(char *str, ...);
 char		*ft_printtype(char *str, t_vars *e);

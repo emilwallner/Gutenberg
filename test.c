@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:17:11 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 23:41:58 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/17 19:22:12 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int main(void)
 	wchar_t		*i;
 	wchar_t		c;
 	i = L"✰ 〶e●";
-	ft_printf("%  +d", -42);
+	ft_printf("%#08x|", 42);
+	printf("\n\n\n");
+	printf("%#08x|", 42);
 	return 0;
 }
