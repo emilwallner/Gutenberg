@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 12:42:05 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:00:00 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ char		*ft_printtype(char *str, t_vars *e)
 		else if (ft_findtype(str) != -1)
 			e->type = ft_findtype(str);
 		str++;
-		if (*str == '\0' && e->type == -1)
-			ft_exit(e);
+//		if (*str == '\0' && e->type == -1)
+//			ft_exit(e);
 	}
 	return (str);
 }
