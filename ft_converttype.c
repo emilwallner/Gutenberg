@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 18:50:10 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 21:08:24 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		ftprint(va_list ap, t_vars *e)
 	(e->f == 7) ? n((va_arg(ap, size_t)), e) : 0;
 	(e->f == 8) ? u((va_arg(ap, unsigned int)), e) : 0;
 	(e->f == 9) ? u((unsigned char)va_arg(ap, unsigned int), e) : 0;
-	(e->f == 10) ? u((va_arg(ap, unsigned int)), e) : 0;
+	(e->f == 10) ? u((unsigned short int)(va_arg(ap, unsigned int)), e) : 0;
 	(e->f == 11) ? u((va_arg(ap, unsigned long int)), e) : 0;
 	(e->f == 12) ? u((va_arg(ap, unsigned long long int)), e) : 0;
 	(e->f == 13) ? u((va_arg(ap, uintmax_t)), e) : 0;

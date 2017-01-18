@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 20:02:25 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 21:07:11 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void u(uintmax_t nb, t_vars *e)
 	if(e->printlen + e->printextra < e->width && !e->align && e->printchar == ' ' && e->printextra)
 		ft_printprefix(e);
 	if(e->len < e->pointlen)
-		ft_printspace(e->pointlen - e->len, '0', e);
+		ft_printspace(e->pointlen - (e->len + e->printextra), '0', e);
 	if(!(e->pointlen != -1 && *str == '0'))
 		e->totcount += ft_putstr_count(str);
 	if(e->pointlen != -1 && *str == '0' && (e->type == OCTAL || e->type == UOCTAL) && e->hash)

@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:17:11 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 19:54:18 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 21:02:29 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int main(void)
 	b = 23423;
 	int		first;
 	int		second;
-ft_printf("%03.2d", 0);
+ft_printf("%#.3o", 1);
 	//ft_printf("@moulitest: % Zooo", -429496729);
 	printf("\n\n\n");
-	printf("%03.2d", 0);
+	printf("%#.3o", 1);
 	return 0;
 }
