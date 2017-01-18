@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 15:38:55 by ewallner         ###   ########.fr       */
+/*   Created: 2017/01/18 16:25:37 by ewallner          #+#    #+#             */
+/*   Updated: 2017/01/18 19:10:22 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 int ft_printf(char *str, ...)
 {
 	va_list ap;
-	t_vars	e;
-	
+	t_vars e;
+
 	e.totcount = 0;
-	va_start(ap, str);
+	va_start(	ap, str);
 	while (*str != '\0')
 	{
 		if (*str != '%')
@@ -44,8 +44,6 @@ int ft_printf(char *str, ...)
 		}
 	}
 	va_end(ap);
-
 	return (e.totcount);
 }
-
 

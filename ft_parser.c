@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 15:00:00 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:45:18 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void	ft_initialize_e(t_vars *e)
 	e->printminus = 0;
 	e->printsign = '0';
 	e->printlen = 0;
+	e->hash = 0;
 	e->printplus = 0;
 	e->printspace = 0;
 	e->printprespace = 0;
 	e->printlastspace = 0;
 	e->printzero = 0;
 	e->printprefix = 0;
-	e->skip = 0;
 	e->nb = NULL;
 }
 
@@ -105,6 +105,7 @@ void	ft_printvars(t_vars *e)
 	printf("e->printzero: %d\n", e->printzero);
 	printf("e->printprefix: %d\n", e->printprefix);
 	//printf("e->nb: %s/", e->nb);
+	printf("e->nb: %s\e", e->nb);
 	printf("e->totcount: %d\n", e->totcount);
 	printf("New var>>>\n\n\n");
 }
@@ -124,7 +125,10 @@ char		*ft_printtype(char *str, t_vars *e)
 		else if (*str == '0' && e->pointlen == -1 && e->width == -1 && !e->zero)
 			e->zero = TRUE;
 		else if (*str == '#')
+		{
 			e->printprefix = TRUE;
+			e->hash = TRUE;
+		}
 		else if (ft_isdigit(*str) == TRUE && *str != '0' && e->pointlen == -1 && e->width == -1)
 			e->width = ft_atoi(str);
 		else if (*str == '.' && e->pointlen == -1)

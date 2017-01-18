@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 19:09:25 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 14:15:19 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 16:59:09 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		wstrings_size(wchar_t *str, int i, t_vars *e)
 	charlen = 0;
 	totlen = 0;
 	len = 0;
+	if(!str)
+		return(6);
 	if (i == -1)
 	{
 		while (str[len])
@@ -61,6 +63,10 @@ void		ft_putwstr_cut(wchar_t *str, int i, t_vars *e)
 	totlen = 0;
 	charlen = 0;
 	len = 0;
+	if(!str)
+		str = L"(null)";
+
+
 	while(str[len] != '\0' && totlen <= i && end != 1)
 	{
 		charlen = (wchars_size(str[len], e));
@@ -74,6 +80,7 @@ void		ft_putwstr_cut(wchar_t *str, int i, t_vars *e)
 			end = 1;
 		len++;
 	}
+
 }
 
 

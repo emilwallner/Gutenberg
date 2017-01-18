@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 12:01:44 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:44:19 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -50,7 +50,7 @@ typedef struct	s_vars {
 	int		len;
 	int		type;
 	int		base;
-	int		skip;
+	int		hash;
 	char	printchar;
 	char	printsign;
 	int		printextra;
