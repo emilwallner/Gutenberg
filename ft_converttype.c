@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 22:27:04 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 11:34:06 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void		ftprint(va_list ap, t_vars *e)
 	(e->f == 1) ? n((va_arg(ap, int)), e) : 0;
 	(e->f == 2) ? n((signed char)(va_arg(ap, int)), e) : 0;
 	(e->f == 3) ? n((short int)(va_arg(ap, int)), e) : 0;
-	(e->f == 4) ? n((va_arg(ap, long int)), e) : 0;
-	(e->f == 5) ? n((va_arg(ap, long long int)), e) : 0;
+	(e->f == 4) ? n((va_arg(ap, long long int)), e) : 0;
+	(e->f == 5) ? n((va_arg(ap, long int)), e) : 0;
 	(e->f == 6) ? n((va_arg(ap, intmax_t)), e) : 0;
 	(e->f == 7) ? n((va_arg(ap, size_t)), e) : 0;
 	(e->f == 8) ? u((va_arg(ap, unsigned int)), e) : 0;
@@ -30,7 +30,7 @@ void		ftprint(va_list ap, t_vars *e)
 	(e->f == 10) ? u((va_arg(ap, unsigned int)), e) : 0;
 	(e->f == 11) ? u((va_arg(ap, unsigned long int)), e) : 0;
 	(e->f == 12) ? u((va_arg(ap, unsigned long long int)), e) : 0;
-	(e->f == 13) ? u((va_arg(ap, intmax_t)), e) : 0;
+	(e->f == 13) ? u((va_arg(ap, uintmax_t)), e) : 0;
 	(e->f == 14) ? n((va_arg(ap, double)), e) : 0;
 	(e->f == 15) ? chars((char)(va_arg(ap, int)), e) : 0;
 	(e->f == 16) ? wchars((wchar_t)(va_arg(ap, wint_t)), e) : 0;
@@ -63,6 +63,8 @@ void		typeformat(t_vars *e)
 	((e->type == STRING && e->flags == 4) || e->type == WSTRING) ? e->f = 18 : 0;
 	(e->type == POINTER && e->flags == 0) ? e->f = 19 : 0;
 	(e->type == PERCENT) ? e->f = 20 : 0;
+	(e->type == UUNSIGNED || e->type == UOCTAL || e->type == UDECIMAL) ? e->f = 11 : 0;
+	(e->type == (UUNSIGNED || e->type == UOCTAL || e->type == UDECIMAL) && e->flags > 11) ? e->f = 13 : 0;
 }
 
 

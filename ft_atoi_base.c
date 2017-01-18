@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/17 19:44:20 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 11:40:48 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_printspace(int i, char c, t_vars *e)
 		e->totcount += ft_putchar_count(c);
 }
 
-void	ft_printprefix(t_vars *e)
+void	ft_printprefix(t_vars *e, char *str)
 {
 	if (e->type == UOCTAL || e->type == OCTAL)
 		e->totcount += ft_putchar_count('0');
@@ -29,8 +29,10 @@ void	ft_printprefix(t_vars *e)
 		e->totcount += ft_putstr_count("0x");
 	if (e->type == UHEX)
 		e->totcount += ft_putstr_count("0X");
-	if (e->type == POINTER)
+	if (e->type == POINTER && *str != '0')
 		e->totcount += ft_putstr_count("0x7fff");
+	if (e->type == POINTER && *str == '0')
+		e->totcount += ft_putstr_count("0x");
 }
 
 void	nb_post_flags(t_vars *e)
@@ -69,7 +71,7 @@ void	n(intmax_t nb, t_vars *e)
 	if(!(e->pointlen != -1 && *str == '0'))
 		e->totcount += ft_putstr_count(str);
 	nb_post_flags(e);
-	//ft_printvars(e);
+//	ft_printvars(e);
 }
 
 void		calc_printextra(t_vars *e)
@@ -89,23 +91,23 @@ void u(uintmax_t nb, t_vars *e)
 	e->printchar = (e->zero && e->pointlen == -1) ? '0' : ' ';
 	calc_printextra(e);
 	str = ft_atoi_uintmax(nb, e);
-	if(str[0] == '0' && e->type != POINTER)
+	if(str[0] == '0' && e->type != POINTER && e->type != OCTAL)
 	{
 		e->printprefix = 0;
 		e->printextra = 0;
 	}
 	e->printlen = (e->len >= e->pointlen) ? e->len : e->pointlen;
 	if((e->printlen + e->printextra >= e->width || e->printchar == '0' || e->align) && e->printextra > 0)
-		ft_printprefix(e);
+		ft_printprefix(e, str);
 	if(e->printlen + e->printextra < e->width && !e->align)
 		ft_printspace(e->width - (e->printlen + e->printextra), e->printchar, e);
 	if(e->printlen + e->printextra < e->width && !e->align && e->printchar == ' ' && e->printextra)
-		ft_printprefix(e);
+		ft_printprefix(e, str);
 	if(e->len < e->pointlen)
 		ft_printspace(e->pointlen - e->len, '0', e);
 	if(!(e->pointlen != -1 && *str == '0'))
 		e->totcount += ft_putstr_count(str);
-	//ft_printvars(e);
+//	ft_printvars(e);
 	nb_post_flags(e);
 
 }

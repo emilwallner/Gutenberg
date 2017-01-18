@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 16:07:03 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/17 16:49:45 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 10:03:20 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,13 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 	int			i;
 	int			len;
 	char		*dest;
-
+	
+	if (nb < -9223372036854775807)
+		return ("9223372036854775808");
 	i = 0;
 	if(nb == 0)
 		return ("0");
-	if (e->type == UHEX || e->type == UOCTAL)
-		sixteen = "0123456789ABCDEF";
-	else
-		sixteen = "0123456789abcdef";
+	sixteen = "0123456789";
 	dest = malloc(sizeof(char) * (e->len + 1));
 	dest[e->len] = '\0';
 	len = e->len;
