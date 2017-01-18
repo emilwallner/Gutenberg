@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:23:12 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 13:15:18 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:38:55 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int ft_printf(char *str, ...)
 			//ft_error_handle(&e);
 			ftprint(ap, &e);
 			//ft_printvars(&e);
+			if(e.nb)
+				free(e.nb);
+			e.nb = NULL;
 		}
 	}
 	va_end(ap);

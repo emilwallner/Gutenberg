@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 16:07:03 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 10:03:20 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:39:17 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
 	char	*sixteen;
 	int			i;
 	int			len;
-	char		*dest;
+//	char		*dest;
 
 	i = 0;
 	if(nb == 0)
@@ -72,15 +72,15 @@ char		*ft_atoi_uintmax(uintmax_t nb, t_vars *e)
 		sixteen = "0123456789ABCDEF";
 	else
 		sixteen = "0123456789abcdef";
-	dest = malloc(sizeof(char) * (e->len + 1));
-	dest[e->len] = '\0';
+	e->nb = malloc(sizeof(char) * (e->len + 1));
+	e->nb[e->len] = '\0';
 	len = e->len;
 	while(nb)
 	{
-		dest[--len] = sixteen[nb % e->base];
+		e->nb[--len] = sixteen[nb % e->base];
 		nb /= e->base;
 	}
-	return (dest);
+	return (e->nb);
 }
 
 char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
@@ -88,7 +88,7 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 	char	*sixteen;
 	int			i;
 	int			len;
-	char		*dest;
+	//char		*dest;
 	
 	if (nb < -9223372036854775807)
 		return ("9223372036854775808");
@@ -96,15 +96,15 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e)
 	if(nb == 0)
 		return ("0");
 	sixteen = "0123456789";
-	dest = malloc(sizeof(char) * (e->len + 1));
-	dest[e->len] = '\0';
+	e->nb = malloc(sizeof(char) * (e->len + 1));
+	e->nb[e->len] = '\0';
 	len = e->len;
 	if(nb < 0)
 		nb = -nb;
 	while(nb)
 	{
-		dest[--len] = sixteen[nb % e->base];
+		e->nb[--len] = sixteen[nb % e->base];
 		nb /= e->base;
 	}
-	return (dest);
+	return (e->nb);
 }

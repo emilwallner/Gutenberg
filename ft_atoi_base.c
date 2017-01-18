@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 11:40:48 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:37:49 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void	n(intmax_t nb, t_vars *e)
 		e->totcount += ft_putstr_count(str);
 	nb_post_flags(e);
 //	ft_printvars(e);
+	//if(str != NULL)
+	//	free(str);
+	str = NULL;
 }
 
 void		calc_printextra(t_vars *e)
@@ -107,7 +110,10 @@ void u(uintmax_t nb, t_vars *e)
 		ft_printspace(e->pointlen - e->len, '0', e);
 	if(!(e->pointlen != -1 && *str == '0'))
 		e->totcount += ft_putstr_count(str);
-//	ft_printvars(e);
+	//	ft_printvars(e);
 	nb_post_flags(e);
+	//if(str != NULL)
+	//	free(str);
+//	str = NULL;
 
 }
