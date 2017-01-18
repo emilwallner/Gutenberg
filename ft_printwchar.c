@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/16 14:16:04 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 22:18:28 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "libft.h"
 #include "ft_print.h"
 
-int		wchars_size(wchar_t c, t_vars *e)
+int		wchars_size(wchar_t c)
 {
 	if (c > 55295 && c < 57344)
-		ft_exit(e);
+		exit(-1);
 	if (c < 128)
 		return (1);
 	else if (c < 2048)
@@ -29,7 +29,7 @@ int		wchars_size(wchar_t c, t_vars *e)
 	else if (c < 1114112)
 		return (4);
 	else 
-		ft_exit(e);
+		exit(-1);
 	return (0);
 }
 void	ft_printwchar_norm(wchar_t c, unsigned short *mask, unsigned char bit)
@@ -75,7 +75,7 @@ void	ft_printwchar(wchar_t c)
 
 void	wchars(wchar_t c, t_vars *e)
 {
-	e->len = wchars_size(c, e);
+	e->len = wchars_size(c);
 	if (e->width < e->len)
 	{
 		ft_printwchar(c);

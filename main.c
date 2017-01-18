@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:25:37 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 19:10:22 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 22:35:24 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int ft_printf(char *str, ...)
 		{
 			str++;
 			str = ft_printtype(str, &e);
+			if(ft_error_handle(&e))
+				return (-1);
 			typeformat(&e);
-			//ft_error_handle(&e);
 			ftprint(ap, &e);
 			//ft_printvars(&e);
 			if(e.nb)

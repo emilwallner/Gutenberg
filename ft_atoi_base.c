@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 21:07:11 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 23:36:40 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,17 @@ void		calc_printextra(t_vars *e)
 		e->printextra = 2;
 }
 
+void		printpointlen(t_vars *e)
+{
+
+	if(e->len < e->pointlen && (e->type == UHEX || e->type == HEX))
+		ft_printspace(e->pointlen - (e->len), '0', e);
+	if(e->len < e->pointlen && (e->type == UUNSIGNED || e->type == UNSIGNED))
+		ft_printspace(e->pointlen - (e->len), '0', e);
+	if(e->len < e->pointlen && (e->type == UOCTAL || e->type == OCTAL))
+		ft_printspace(e->pointlen - (e->len + e->printextra), '0', e);
+}
+
 void u(uintmax_t nb, t_vars *e)
 {
 	char *str;
@@ -112,13 +123,11 @@ void u(uintmax_t nb, t_vars *e)
 		ft_printspace(e->width - (e->printlen + e->printextra), e->printchar, e);
 	if(e->printlen + e->printextra < e->width && !e->align && e->printchar == ' ' && e->printextra)
 		ft_printprefix(e);
-	if(e->len < e->pointlen)
-		ft_printspace(e->pointlen - (e->len + e->printextra), '0', e);
+	printpointlen(e);
 	if(!(e->pointlen != -1 && *str == '0'))
 		e->totcount += ft_putstr_count(str);
 	if(e->pointlen != -1 && *str == '0' && (e->type == OCTAL || e->type == UOCTAL) && e->hash)
 		e->totcount += ft_putstr_count(str);
-	//printf("this is th stei string: %c\n", *str);
 	//ft_printvars(e);
 	nb_post_flags(e);
 }

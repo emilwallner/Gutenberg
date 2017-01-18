@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 18:45:18 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 23:09:47 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	ft_initialize_e(t_vars *e)
 	e->hash = 0;
 	e->printplus = 0;
 	e->printspace = 0;
-	e->printprespace = 0;
 	e->printlastspace = 0;
 	e->printzero = 0;
 	e->printprefix = 0;
@@ -79,6 +78,8 @@ int		ft_findtype(char *str)
 	return (-1);
 }
 
+
+
 void	ft_printvars(t_vars *e)
 {
 	printf("e->align: %d\n", e->align);
@@ -100,7 +101,6 @@ void	ft_printvars(t_vars *e)
 	printf("e->printsign: %c\n", e->printsign);
 	printf("e->printplus: %d\n", e->printplus);
 	printf("e->printspace: %d\n", e->printspace);
-	printf("e->printprespace: %d\n", e->printprespace);
 	printf("e->printlastspace: %d\n", e->printlastspace);
 	printf("e->printzero: %d\n", e->printzero);
 	printf("e->printprefix: %d\n", e->printprefix);

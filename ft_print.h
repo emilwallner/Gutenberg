@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 18:44:19 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/18 22:53:40 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -58,7 +58,6 @@ typedef struct	s_vars {
 	int		printlen;
 	int		printplus;
 	int		printspace;
-	int		printprespace;
 	int		printlastspace;
 	int		printzero;
 	int		printprefix;
@@ -73,10 +72,9 @@ char		*ft_atoi_intmax(intmax_t nb, t_vars *e);
 
 int			ft_printf(char *str, ...);
 char		*ft_printtype(char *str, t_vars *e);
-void		ft_error_handle(t_vars *e);
+int			ft_error_handle(t_vars *e);
 void		wstrings(wchar_t *str, t_vars *e);
-void		ft_exit(t_vars *e);
-int			wchars_size(wchar_t c, t_vars *e);
+int			wchars_size(wchar_t c);
 void		ft_printwchar(wchar_t c);
 void		wchars(wchar_t, t_vars *e);
 void		percent(t_vars *e);
