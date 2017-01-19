@@ -6,11 +6,12 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:35:59 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/19 11:43:55 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 15:22:32 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_print.h"
+#include <stdio.h>
 
 void	cutn(t_vars *e, char *str)
 {
@@ -49,7 +50,7 @@ void	n(intmax_t nb, t_vars *e)
 	nb_post_flags(e);
 }
 
-void	printpointlen(t_vars *e)
+void	printpointlen(t_vars *e, char *str)
 {
 	if (e->len < e->pointlen && (e->type == UHEX || e->type == HEX))
 		ft_printspace(e->pointlen - (e->len), '0', e);
@@ -57,13 +58,18 @@ void	printpointlen(t_vars *e)
 		ft_printspace(e->pointlen - (e->len), '0', e);
 	if (e->len < e->pointlen && (e->type == UOCTAL || e->type == OCTAL))
 		ft_printspace(e->pointlen - (e->len + e->printextra), '0', e);
+	if (e->pointlen > 0 && (e->type == HEX || e->type == UHEX) && *str == '0')
+		e->totcount += ft_putstr_count(str);
 }
 
 void	cutu(t_vars *e, char *str)
 {
-	if (str[0] == '0' && e->pointlen == 0)
+	if (*str == '0' && e->pointlen == 0)
 		e->len = 0;
-	if (str[0] == '0' && e->type != POINTER)
+	if (*str == '0' && e->pointlen == 0 && (e->type == OCTAL || \
+				e->type == UOCTAL) && e->hash)
+		e->len = 1;
+	if (*str == '0' && e->type != POINTER)
 	{
 		e->printprefix = 0;
 		e->printextra = 0;
@@ -89,7 +95,7 @@ void	u(uintmax_t nb, t_vars *e)
 	if (e->printlen + e->printextra < e->width && !e->align && e->printchar \
 			== ' ' && e->printextra)
 		ft_printprefix(e);
-	printpointlen(e);
+	printpointlen(e, str);
 	if (!(e->pointlen != -1 && *str == '0'))
 		e->totcount += ft_putstr_count(str);
 	if (e->pointlen != -1 && *str == '0' && \
