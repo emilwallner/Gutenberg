@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 22:18:28 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:23:41 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,20 @@ int		wchars_size(wchar_t c)
 		exit(-1);
 	return (0);
 }
-void	ft_printwchar_norm(wchar_t c, unsigned short *mask, unsigned char bit)
+void	ft_printwchar_norm(wchar_t c, unsigned char bit)
 {
-	bit = mask[3] | (c >> 18 & mask[5]);
+	bit = 240 | (c >> 18 & 7);
 	write(1, &bit, 1);
-	bit = mask[0] | (c >> 12 & mask[4]);
+	bit = 128 | (c >> 12 & 63);
 	write(1, &bit, 1);
-	bit = mask[0] | (c >> 6 & mask[4]);
+	bit = 128 | (c >> 6 & 63);
 	write(1, &bit, 1);
-	bit = mask[0] | (c & mask[4]);
+	bit = 128 | (c & 63);
 	write(1, &bit, 1);
 }
 
 void	ft_printwchar(wchar_t c)
 {
-	static unsigned short mask[] = {128, 192, 224, 240, 63, 7, 15};
 	unsigned char	bit = '\0';
 
 	if (c < 128)
@@ -55,22 +54,22 @@ void	ft_printwchar(wchar_t c)
 	}
 	else if (c < 2048)
 	{
-		bit = (c >> 6) | mask[1];
+		bit = (c >> 6) | 192;
 		write(1, &bit, 1);
-		bit = mask[0] | (c & mask[4]);
+		bit = 128 | (c & 63);
 		write(1, &bit, 1);
 	}
 	else if (c < 65536)
 	{
-		bit = mask[2] | (c >> 12 & mask[6]);
+		bit = 224 | (c >> 12 & 15);
 		write(1, &bit, 1);
-		bit = (mask[0] | (c >> 6 & mask[4]));
+		bit = (128 | (c >> 6 & 63));
 		write(1, &bit, 1);
-		bit = (mask[0] | (c & mask[4]));
+		bit = (128 | (c & 63));
 		write(1, &bit, 1);
 	}
 	else if (c < 1114112)
-		ft_printwchar_norm(c, mask, bit);
+		ft_printwchar_norm(c, bit);
 }
 
 void	wchars(wchar_t c, t_vars *e)
@@ -86,15 +85,11 @@ void	wchars(wchar_t c, t_vars *e)
 		ft_printspace(e->width - e->len, ' ', e);
 		ft_printwchar(c);
 		e->totcount += e->len;
-	} 
+	}
 	if (e->width > e->len && e->align == TRUE)
 	{
 		ft_printwchar(c);
 		e->totcount += e->len;
 		ft_printspace(e->width - e->len, ' ', e);
 	}
-	
 }
-
-
-

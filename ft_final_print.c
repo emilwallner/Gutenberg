@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 16:39:13 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/09 17:06:47 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 10:53:10 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void		ft_print_zeroes(int i)
 	int c;
 
 	c = -1;
-	while(c++ < i)
+	while (c++ < i)
 		ft_putchar('0');
 }

@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:22:51 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 21:08:24 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:05:15 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <wchar.h>
 #include "ft_print.h"
 #include "libft.h"
-
 
 void		ftprint(va_list ap, t_vars *e)
 {
@@ -40,7 +39,6 @@ void		ftprint(va_list ap, t_vars *e)
 	(e->f == 20) ? percent(e) : 0;
 }
 
-
 void		typeformat(t_vars *e)
 {
 	((e->type < 3) && e->flags == 0) ? e->f = 1 : 0;
@@ -60,34 +58,10 @@ void		typeformat(t_vars *e)
 	(e->type == CHAR && e->flags == 0) ? e->f = 15 : 0;
 	((e->type == CHAR && e->flags == 4) || e->type == WCHAR) ? e->f = 16 : 0;
 	(e->type == STRING && e->flags == 0) ? e->f = 17 : 0;
-	((e->type == STRING && e->flags == 4) || e->type == WSTRING) ? e->f = 18 : 0;
+	((e->type == STRING && e->flags == 4) || e->type == WSTRING) \
+			? e->f = 18 : 0;
 	(e->type == POINTER) ? e->f = 19 : 0;
 	(e->type == PERCENT) ? e->f = 20 : 0;
 	(e->type == UUNSIGNED || e->type == UOCTAL) ? e->f = 11 : 0;
 	(e->type == UDECIMAL) ? e->f = 5 : 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void		format_and_print(t_vars *e, char *str)
-{
-	
-}
-*/
-
-
