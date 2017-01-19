@@ -6,15 +6,12 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:25:37 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/19 12:04:31 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 15:55:08 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdarg.h>
-#include "libft.h"
 #include "ft_print.h"
-#include <locale.h>
 
 char	*print_mainstring(char *str, t_vars *e)
 {
