@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 18:47:43 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/19 11:06:47 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:35:03 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ typedef struct	s_vars {
 	char	*nb;
 }				t_vars;
 
+void			ft_printspace(int i, char c, t_vars *e);
+void			ft_printprefix(t_vars *e);
+void			nb_post_flags(t_vars *e);
+void			addsign(char c, t_vars *e);
+void			calc_printextra(t_vars *e);
 int				ft_size_of_intmax(intmax_t nb, t_vars *e);
 int				ft_size_of_uintmax(uintmax_t nb, t_vars *e);
 char			*ft_atoi_uintmax(uintmax_t nb, t_vars *e);
