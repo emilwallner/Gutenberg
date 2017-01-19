@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:25:37 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 22:35:24 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 12:04:31 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,34 @@
 #include "ft_print.h"
 #include <locale.h>
 
-int ft_printf(char *str, ...)
+char	*print_mainstring(char *str, t_vars *e)
 {
-	va_list ap;
-	t_vars e;
+	e->totcount += ft_putchar_count(*str);
+	str++;
+	return (str);
+}
+
+int		ft_printf(char *str, ...)
+{
+	va_list	ap;
+	t_vars	e;
 
 	e.totcount = 0;
-	va_start(	ap, str);
+	va_start(ap, str);
 	while (*str != '\0')
 	{
 		if (*str != '%')
-		{
-			e.totcount += ft_putchar_count(*str);
-			str++;
-		}
+			str = print_mainstring(str, &e);
 		else
 		{
 			str++;
+			ft_initialize_e(&e);
 			str = ft_printtype(str, &e);
-			if(ft_error_handle(&e))
+			if (ft_error_handle(&e))
 				return (-1);
 			typeformat(&e);
 			ftprint(ap, &e);
-			//ft_printvars(&e);
-			if(e.nb)
+			if (e.nb)
 				free(e.nb);
 			e.nb = NULL;
 		}
@@ -47,4 +51,3 @@ int ft_printf(char *str, ...)
 	va_end(ap);
 	return (e.totcount);
 }
-

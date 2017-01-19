@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:31:03 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/17 18:35:57 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:49:55 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_putstr_count(char *str)
 	return (i);
 }
 
-void		ft_putstr_cut(char *str, int width, t_vars *e)
+void	ft_putstr_cut(char *str, int width, t_vars *e)
 {
 	int		i;
 
@@ -50,9 +50,9 @@ void	strings(char *str, t_vars *e)
 	if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
-	if(e->pointlen < len && e->pointlen != -1)
+	if (e->pointlen < len && e->pointlen != -1)
 		e->printlen = e->pointlen;
-	else 
+	else
 		e->printlen = len;
 	if (e->width <= e->printlen)
 		ft_putstr_cut(str, e->printlen, e);

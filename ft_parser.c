@@ -6,14 +6,11 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 19:24:30 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/18 23:09:47 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:58:47 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_print.h"
-#include <stdio.h>
-
 
 int		ft_flagconv(char *str)
 {
@@ -78,69 +75,37 @@ int		ft_findtype(char *str)
 	return (-1);
 }
 
-
-
-void	ft_printvars(t_vars *e)
+void	hash(t_vars *e)
 {
-	printf("e->align: %d\n", e->align);
-	printf("e->zero: %d\n", e->zero);
-	printf("e->plus: %d\n", e->plus);
-	printf("e->width: %d\n", e->width);
-	printf("e->pointlen: %d\n", e->pointlen);
-	printf("e->percent: %d\n", e->percent);
-	printf("e->neg: %d\n", e->neg);
-	printf("e->f: %d\n", e->f);
-	printf("e->flags: %d\n", e->flags);
-	printf("e->len: %d\n", e->len);
-	printf("e->type: %d\n", e->type);
-	printf("e->base: %d\n", e->base);
-	printf("e->printchar: %c\n", e->printchar);
-	printf("e->printminus: %d\n", e->printminus);
-	printf("e->printextra: %d\n", e->printextra);
-	printf("e->printlen: %d\n", e->printlen);
-	printf("e->printsign: %c\n", e->printsign);
-	printf("e->printplus: %d\n", e->printplus);
-	printf("e->printspace: %d\n", e->printspace);
-	printf("e->printlastspace: %d\n", e->printlastspace);
-	printf("e->printzero: %d\n", e->printzero);
-	printf("e->printprefix: %d\n", e->printprefix);
-	//printf("e->nb: %s/", e->nb);
-	printf("e->nb: %s\e", e->nb);
-	printf("e->totcount: %d\n", e->totcount);
-	printf("New var>>>\n\n\n");
+	e->printprefix = TRUE;
+	e->hash = TRUE;
 }
 
-
-char		*ft_printtype(char *str, t_vars *e)
+char	*ft_printtype(char *str, t_vars *e)
 {
-	ft_initialize_e(e);
-	while(e->type == -1 && *str != '\0')
+	while (e->type == -1 && *str != '\0')
 	{
-		if (*str == '-') 
+		if (*str == '-')
 			e->align = TRUE;
 		else if (*str == '+')
 			e->plus = TRUE;
-		else if	(*str == ' ')
+		else if (*str == ' ')
 			e->printspace = TRUE;
 		else if (*str == '0' && e->pointlen == -1 && e->width == -1 && !e->zero)
 			e->zero = TRUE;
 		else if (*str == '#')
-		{
-			e->printprefix = TRUE;
-			e->hash = TRUE;
-		}
-		else if (ft_isdigit(*str) == TRUE && *str != '0' && e->pointlen == -1 && e->width == -1)
+			hash(e);
+		else if (ft_isdigit(*str) == TRUE && *str != '0' && e->pointlen \
+				== -1 && e->width == -1)
 			e->width = ft_atoi(str);
 		else if (*str == '.' && e->pointlen == -1)
 			e->pointlen = ft_atoi(str + 1);
-		else if ((*str == 'h' || *str == 'j' || *str == 'z' || *str == 'l') && !e->flags)
+		else if ((*str == 'h' || *str == 'j' || *str == 'z' || *str == 'l') \
+				&& !e->flags)
 			e->flags = ft_flagconv(str);
 		else if (ft_findtype(str) != -1)
 			e->type = ft_findtype(str);
 		str++;
-//		if (*str == '\0' && e->type == -1)
-//			ft_exit(e);
 	}
 	return (str);
 }
-

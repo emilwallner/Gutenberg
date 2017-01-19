@@ -6,7 +6,7 @@
 /*   By: ewallner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 19:41:15 by ewallner          #+#    #+#             */
-/*   Updated: 2017/01/19 11:23:41 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:49:22 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ int		wchars_size(wchar_t c)
 		return (3);
 	else if (c < 1114112)
 		return (4);
-	else 
+	else
 		exit(-1);
 	return (0);
 }
+
 void	ft_printwchar_norm(wchar_t c, unsigned char bit)
 {
 	bit = 240 | (c >> 18 & 7);
@@ -46,8 +47,9 @@ void	ft_printwchar_norm(wchar_t c, unsigned char bit)
 
 void	ft_printwchar(wchar_t c)
 {
-	unsigned char	bit = '\0';
+	unsigned char	bit;
 
+	bit = '\0';
 	if (c < 128)
 	{
 		write(1, &c, 1);
