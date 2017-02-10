@@ -6,11 +6,11 @@
 #    By: ewallner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 16:30:18 by ewallner          #+#    #+#              #
-#    Updated: 2017/01/19 11:35:36 by ewallner         ###   ########.fr        #
+#    Updated: 2017/02/10 16:51:52 by ewallner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 HEAD = libft.h
 HEADPRINTF = ft_print.h
 FLAG =  -Werror -Wextra -Wall
@@ -30,7 +30,7 @@ SRC = ft_putchar.c ft_putchar_fd.c ft_putstr_fd.c ft_putstr.c ft_strlen.c \
 	  get_next_line.c ft_count_words.c ft_strstrlen.c ft_base.c ft_atoi_base.c \
 	  ft_converttype.c ft_error_handle.c ft_parser.c ft_printwchar.c \
 	  ft_chars.c ft_strings.c ft_wstrings.c main.c ft_atoi_calc.c \
-	  ft_extra_atoi_base.c
+	  ft_extra_atoi_base.c ft_atoi_long.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -41,11 +41,10 @@ $(NAME):
 
 all: $(NAME)
 
-clean: 
+clean:
 	/bin/rm -f $(OBJ)
 
 fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
-
