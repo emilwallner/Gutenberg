@@ -6,7 +6,7 @@
 /*   By: ewallner <ewallner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 20:13:07 by ewallner          #+#    #+#             */
-/*   Updated: 2017/02/10 18:51:48 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/02/12 15:03:33 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		*ft_strnew(size_t n);
 void		*ft_memchr(const void *src, int c, size_t n);
 void		*ft_memdel(void **ap);
 int			ft_memcmp(void const *str1, void const *str2, size_t n);
-void		*ft_memmove(void *dest, const void *src, size_t n);
+void		*ft_memmove(void *dst, const void *src, size_t len);
 void		*ft_memcpy(void *dest, void const *src, size_t n);
 char		*ft_strcpy(char *dest, const char *src);
 char		*ft_strcat(char *dest, const char *src);
