@@ -6,11 +6,12 @@
 /*   By: ewallner <ewallner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 19:46:35 by ewallner          #+#    #+#             */
-/*   Updated: 2017/02/17 21:03:10 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/02/17 21:04:16 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "libft.h"
 
 int		ft_strequ(char const *s1, char const *s2)
 {
