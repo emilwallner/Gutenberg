@@ -6,7 +6,7 @@
 /*   By: ewallner <ewallner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 20:13:07 by ewallner          #+#    #+#             */
-/*   Updated: 2017/02/18 17:55:18 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/02/18 23:04:19 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 void		ft_base(unsigned int i, unsigned int base_length, char *base);
 int			ft_strstrlen(char **str);
 int			get_next_line(const int fd, char **line);
+int			get_next_line_dr(const int fd, char **line);
 void		ft_putchar_fd(char c, int fd);
 int			ft_count_words(char const *s, char c);
 void		ft_putstr_fd(char const *s, int fd);
