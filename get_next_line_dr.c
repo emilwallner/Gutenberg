@@ -6,7 +6,7 @@
 /*   By: ewallner <ewallner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 14:25:33 by ewallner          #+#    #+#             */
-/*   Updated: 2017/02/19 11:30:08 by ewallner         ###   ########.fr       */
+/*   Updated: 2017/02/19 18:15:00 by ewallner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ int		get_next_line_dr(const int fd, char **line)
 		stock = ft_strnew(0);
 	while (!(ft_strchr(stock, '\n')))
 	{
-		if(ft_strlen(stock) > 500)
-			return(error_handling(&stock));
 		if (!(buffer_to_stock(fd, &stock, &bytes_read)))
 			return (error_handling(&stock));
 		if (bytes_read == 0)
 			return (file_end(line, &stock));
+		if(stock && (ft_strlen(stock) > 500 || stock[0] == '\0'))
+			return(error_handling(&stock));
 	}
 	str = ft_strchr(stock, '\n');
 	*line = ft_strsub(stock, 0, str - stock);
