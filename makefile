@@ -34,17 +34,24 @@ SRC = ft_putchar.c ft_putchar_fd.c ft_putstr_fd.c ft_putstr.c ft_strlen.c \
 
 OBJ = $(SRC:%.c=%.o)
 
+GREEN		= \033[32m
+RED			= \033[31m
+DEFAULT	= \033[37m
+CYAN    = \x1b[36m
+
 $(NAME):
-	gcc $(FLAG) $(OPTION) $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc $(FLAG) $(OPTION) $(SRC)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "$(GREEN)Ant farm created. $(DEFAULT)"
 
 all: $(NAME)
 
 clean:
-	/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
+	@echo "$(RED)Ant farm destroyed. $(DEFAULT)"
 
 re: fclean all
